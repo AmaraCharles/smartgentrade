@@ -1,0 +1,208 @@
+
+
+////https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,LTC&tsyms=USD&e=Coinbase&extraParams=your_app_name
+
+
+var bitcoinCurrentPrice = document.getElementById("bitcoin-current-price");
+var bitcoinPercentChange = document.getElementById("bitcoin-percent-change");
+var ethereumCurrentPrice = document.getElementById("ethereum-current-price");
+var ethereumPercentChange = document.getElementById("ethereum-percent-change");
+var litecoinCurrentPrice = document.getElementById("litecoin-current-price");
+var litecoinPercentChange = document.getElementById("litecoin-percent-change");
+var dogecoinCurrentPrice = document.getElementById("dogecoin-current-price");
+var dogecoinPercentChange = document.getElementById("dogecoin-percent-change");
+var bitcoincashCurrentPrice = document.getElementById("bitcoincash-current-price");
+var bitcoincashPercentChange = document.getElementById("bitcoincash-percent-change");
+var dashCurrentPrice = document.getElementById("dash-current-price");
+var dashPercentChange = document.getElementById("dash-percent-change");
+
+var interval = 10000;
+
+
+var bitcoinPercentNum;
+var ethereumPercentNum;
+var litecoinPercentNum;
+var dogecoinPercentNum;
+var bitcoincashPercentNum;
+var dashPercentNum;
+var bitcoinPercentStr;
+var ethereumPercentStr;
+var litecoinPercentStr;
+var dogecoinPercentStr;
+var bitcoincashPercentStr;
+var dashPercentStr;
+
+
+
+var ajaxFunction = function () {
+
+    $.ajax({
+        type: "GET",
+        url: "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,LTC,BCH,DASH,DOGE&tsyms=USD&e=Kraken&extraParams=your_app_name%22",
+        success: function (data) {
+
+            bitcoinCurrentPrice.textContent = data.DISPLAY.BTC.USD.PRICE;
+            bitcoinPercentNum = data.DISPLAY.BTC.USD.CHANGEPCT24HOUR;
+            bitcoinPercentStr = bitcoinPercentNum + "%";
+
+            ethereumCurrentPrice.textContent = data.DISPLAY.ETH.USD.PRICE;
+            ethereumPercentNum = (data.RAW.ETH.USD.CHANGEPCT24HOUR).toFixed(2);
+            ethereumPercentStr = ethereumPercentNum + "%";
+
+            litecoinCurrentPrice.textContent = data.DISPLAY.LTC.USD.PRICE;
+            litecoinPercentNum = (data.RAW.LTC.USD.CHANGEPCT24HOUR).toFixed(2);
+            litecoinPercentStr = litecoinPercentNum + "%";
+
+            dogecoinCurrentPrice.textContent = data.DISPLAY.DOGE.USD.PRICE;
+            dogecoinPercentNum = (data.RAW.DOGE.USD.CHANGEPCT24HOUR).toFixed(2);
+            dogecoinPercentStr = dogecoinPercentNum + "%";
+
+            bitcoincashCurrentPrice.textContent = data.DISPLAY.BCH.USD.PRICE;
+            bitcoincashPercentNum = (data.RAW.BCH.USD.CHANGEPCT24HOUR).toFixed(2);
+            bitcoincashPercentStr = bitcoincashPercentNum + "%";
+
+            dashCurrentPrice.textContent = data.DISPLAY.DASH.USD.PRICE;
+            dashPercentNum = (data.RAW.DASH.USD.CHANGEPCT24HOUR).toFixed(2);
+            dashPercentStr = dashPercentNum + "%";
+
+            bitcoinChange();
+            ethereumChange();
+            litecoinChange();
+            dogecoinChange();
+            bitcoincashChange();
+            dashChange();
+            lastUpdateTime();
+
+        },
+        complete: function (data) {
+            setTimeout(ajaxFunction, 10000);
+        }
+    });
+};
+
+ajaxFunction();
+setTimeout(ajaxFunction, interval);
+
+
+function bitcoinChange() {
+
+    if (bitcoinPercentNum > 0) {
+        $("#bitcoin-percent-change").removeClass("percent-decrease");
+        $("#bitcoin-percent-change").addClass("percent-increase");
+        bitcoinPercentStr = "+ " + bitcoinPercentStr;
+        bitcoinPercentChange.textContent = bitcoinPercentStr;
+    }
+    else if (bitcoinPercentNum === 0) {
+        $("#bitcoin-percent-change").removeClass("percent-increase");
+        $("#bitcoin-percent-change").removeClass("percent-decrease");
+        bitcoinPercentStr = bitcoinPercentStr;
+        bitcoinPercentChange.textContent = bitcoinPercentStr;
+    }
+    else {
+        $("#bitcoin-percent-change").removeClass("percent-increase");
+        $("#bitcoin-percent-change").addClass("percent-decrease");
+        bitcoinPercentStr = " " + bitcoinPercentStr;
+        bitcoinPercentChange.textContent = bitcoinPercentStr;
+    }
+}
+
+function ethereumChange() {
+    if (ethereumPercentNum > 0) {
+        $("#ethereum-percent-change").removeClass("percent-decrease");
+        $("#ethereum-percent-change").addClass("percent-increase");
+        ethereumPercentStr = "+ " + ethereumPercentStr;
+        ethereumPercentChange.textContent = ethereumPercentStr;
+    }
+    else if (ethereumPercentNum === 0) {
+        $("#ethereum-percent-change").removeClass("percent-increase");
+        $("#ethereum-percent-change").removeClass("percent-decrease");
+        ethereumPercentChange.textContent = ethereumPercentStr;
+    }
+    else {
+        $("#ethereum-percent-change").removeClass("percent-increase");
+        $("#ethereum-percent-change").addClass("percent-decrease");
+        ethereumPercentStr = " " + ethereumPercentStr;
+        ethereumPercentChange.textContent = ethereumPercentStr;
+    }
+}
+
+function litecoinChange() {
+    if (litecoinPercentNum > 0) {
+        $("#litecoin-percent-change").removeClass("percent-decrease");
+        $("#litecoin-percent-change").addClass("percent-increase");
+        litecoinPercentStr = "+ " + litecoinPercentStr;
+        litecoinPercentChange.textContent = litecoinPercentStr;
+    }
+    else if (litecoinPercentNum === 0) {
+        $("#litecoin-percent-change").removeClass("percent-increase");
+        $("#litecoin-percent-change").removeClass("percent-decrease");
+        litecoinPercentChange.textContent = litecoinPercentStr;
+    }
+    else {
+        $("#litecoin-percent-change").removeClass("percent-increase");
+        $("#litecoin-percent-change").addClass("percent-decrease");
+        litecoinPercentStr = " " + litecoinPercentStr;
+        litecoinPercentChange.textContent = litecoinPercentStr;
+    }
+}
+
+function dogecoinChange() {
+    if (dogecoinPercentNum > 0) {
+        $("#dogecoin-percent-change").removeClass("percent-decrease");
+        $("#dogecoin-percent-change").addClass("percent-increase");
+        dogecoinPercentStr = "+ " + dogecoinPercentStr;
+        dogecoinPercentChange.textContent = dogecoinPercentStr;
+    }
+    else if (dogecoinPercentNum === 0) {
+        $("#dogecoin-percent-change").removeClass("percent-increase");
+        $("#dogecoin-percent-change").removeClass("percent-decrease");
+        dogecoinPercentChange.textContent = dogecoinPercentStr;
+    }
+    else {
+        $("#dogecoin-percent-change").removeClass("percent-increase");
+        $("#dogecoin-percent-change").addClass("percent-decrease");
+        dogecoinPercentStr = " " + dogecoinPercentStr;
+        dogecoinPercentChange.textContent = dogecoinPercentStr;
+    }
+}
+
+
+function bitcoincashChange() {
+    if (bitcoincashPercentNum > 0) {
+        $("#bitcoincash-percent-change").removeClass("percent-decrease");
+        $("#bitcoincash-percent-change").addClass("percent-increase");
+        bitcoincashPercentStr = "+ " + bitcoincashPercentStr;
+        bitcoincashPercentChange.textContent = bitcoincashPercentStr;
+    }
+    else if (bitcoincashPercentNum === 0) {
+        $("#bitcoincash-percent-change").removeClass("percent-increase");
+        $("#bitcoincash-percent-change").removeClass("percent-decrease");
+        bitcoincashPercentChange.textContent = bitcoincashPercentStr;
+    }
+    else {
+        $("#bitcoincash-percent-change").removeClass("percent-increase");
+        $("#bitcoincash-percent-change").addClass("percent-decrease");
+        bitcoincashPercentStr = " " + bitcoincashPercentStr;
+        bitcoincashPercentChange.textContent = bitcoincashPercentStr;
+    }
+}
+
+function dashChange() {
+    if (dashPercentNum > 0) {
+        $("#dash-percent-change").removeClass("percent-decrease");
+        $("#dash-percent-change").addClass("percent-increase");
+        dashPercentStr = "+ " + dashPercentStr;
+        dashPercentChange.textContent = dashPercentStr;
+    }
+    else if (dashPercentNum === 0) {
+        $("#dash-percent-change").removeClass("percent-increase");
+        $("#dash-percent-change").removeClass("percent-decrease");
+        dashPercentChange.textContent = dashPercentStr;
+    }
+    else {
+        $("#dash-percent-change").removeClass("percent-increase");
+        $("#dash-percent-change").addClass("percent-decrease");
+        dashPercentStr = " " + dashPercentStr;
+        dashPercentChange.textContent = dashPercentStr;
+    }
+}

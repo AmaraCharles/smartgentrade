@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { min-height: 100vh; display: flex; background: #fff; color: #333; }
+    .container { display: flex; width: 100%; min-height: 100vh; }
+    .image-side { flex: 1; background: url("./nathan-dumlao-lvWw_G8tKsk-unsplash.jpg") no-repeat center/cover; position: relative; }
+    .overlay { position: absolute; inset: 0; }
+    .form-side { flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+    .form-box { max-width: 400px; width: 100%; background: #fff; padding: 2rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; }
+    .form-box img.logo { max-width: 100px; margin-bottom: 1rem; }
+    .form-box h2 { margin-bottom: 1rem; font-weight: 600; color: #0c34f0; }
+    .input-group { margin-bottom: 1rem; text-align: left; }
+    label { display: block; font-size: 0.9rem; margin-bottom: 0.5rem; }
+    input { width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; }
+    input:focus { outline: none; border-color: #0c34f0; box-shadow: 0 0 4px rgba(253,126,20,0.5); }
+    button { width: 100%; padding: 0.9rem; background: #0c34f0; border: none; color: #fff; font-size: 1rem; font-weight: 600; border-radius: 8px; cursor: pointer; transition: background 0.3s ease; }
+    button:hover { background: #0c34f0; }
+    p { margin-top: 1rem; font-size: 0.9rem; }
+    a { color: #0c34f0; text-decoration: none; font-weight: 500; }
+    .live-section { margin-top: 1rem; font-size: 0.9rem; }
+    @media (max-width: 900px) { 
+      .container { flex-direction: column; } 
+      .image-side { height: 250px; } 
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="image-side"><div class="overlay"></div></div>
+    <div class="form-side">
+      <div class="form-box">
+        <!-- Logo -->
+        <img src="logo.png" alt="Logo" class="logo">
+
+        <h2>Login</h2>
+        <form id="loginForm">
+          <div class="input-group">
+            <label>Email</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+          </div>
+          <div class="input-group">
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Enter your password" required>
+          </div>
+          <button type="submit" id="botn">Login</button>
+          <div class="live-section"></div>
+        </form>
+        <p> <a href="./forgotpassword.html">Forgot password</a></p>
+        <p>Don’t have an account? <a href="register.html">Register</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Login Script -->
+  <script>
+    var btn=document.getElementById('botn');
+    function red () {
+      btn.style.opacity="1"
+      btn.innerHTML="Login"
+    }
+    function blurr (){
+      btn.style.opacity="0.5"
+      btn.innerHTML= "Loading . . ."
+    }
+
+    async function loginUser({ email, password }) {
+      await $.ajax({
+        type: "POST",
+        url: "https://wealt-render.onrender.com/auth/login",
+        dataType: "json",
+        data: { email, password },
+        timeout: 30000,
+        success: function ({ data }) {
+          console.log(data);
+          $('.live-section').html("Login successful").addClass('alert-success')
+          localStorage.setItem("user", JSON.stringify(data))
+          setTimeout(function () { 
+            if (email=="adminrole@gmail.com"){
+              $(location).prop('href', './dashboard/admin/admindashboard.html')
+            } else {
+              $(location).prop('href','./dashboard/dashboard.html')
+            }
+          }, 4000)
+        },
+        error: function () {
+          red();
+          $('.live-section').html("Incorrect Username or Password").addClass('alert-danger')
+        }
+      });
+    }
+
+    $('#loginForm').submit(function (e) {
+      e.preventDefault(); // prevents page reload
+      const email = $('#email').val();
+      const password = $('#password').val();
+      blurr();
+      loginUser({ email, password });
+    });
+  </script>
+</body>
+</html>
