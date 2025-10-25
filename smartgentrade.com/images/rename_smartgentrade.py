@@ -34,4 +34,4 @@ def rename_files(folder_path, old_name, new_name):
 # ==== Example usage ====
 if __name__ == "__main__":
     folder = input("Enter folder path: ").strip()
-    rename_files(folder, "Smartgentrade", "smartgentrade")
+    rename_files(folder, "smartgentrade", "smartgentrade")

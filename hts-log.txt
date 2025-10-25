@@ -1,6 +1,6 @@
-HTTrack3.49-2+htsswf+htsjava launched on Fri, 19 Sep 2025 18:11:31 at https://Smartgentrade.com +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+HTTrack3.49-2+htsswf+htsjava launched on Fri, 19 Sep 2025 18:11:31 at https://smartgentrade.com +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
 
-(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://Smartgentrade.com -O1 "C:\webby\flux" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://smartgentrade.com -O1 "C:\webby\flux" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
 
 
 
@@ -14,343 +14,343 @@ note:	the hts-log.txt file, and hts-cache folder, may contain sensitive informat
 
 
 
-18:15:45	Error: 	"Error when decompressing" (-1) at link https://Smartgentrade.com/“https://www.smartsupp.com” (from https://Smartgentrade.com/)
+18:15:45	Error: 	"Error when decompressing" (-1) at link https://smartgentrade.com/“https://www.smartsupp.com” (from https://smartgentrade.com/)
 
-18:15:53	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/js/parallaxie.js (from https://Smartgentrade.com/)
+18:15:53	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/js/parallaxie.js (from https://smartgentrade.com/)
 
-18:15:53	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/js/gsap.min.js (from https://Smartgentrade.com/)
+18:15:53	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/js/gsap.min.js (from https://smartgentrade.com/)
 
-18:15:53	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/js/magiccursor.js (from https://Smartgentrade.com/)
+18:15:53	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/js/magiccursor.js (from https://smartgentrade.com/)
 
-18:15:53	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/js/splitType.js (from https://Smartgentrade.com/)
+18:15:53	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/js/splitType.js (from https://smartgentrade.com/)
 
-18:15:53	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/js/ScrollTrigger.min.js (from https://Smartgentrade.com/)
+18:15:53	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/js/ScrollTrigger.min.js (from https://smartgentrade.com/)
 
-18:15:54	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/js/jquery.mb.YTPlayer.min.js (from https://Smartgentrade.com/)
+18:15:54	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/js/jquery.mb.YTPlayer.min.js (from https://smartgentrade.com/)
 
-18:15:54	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/js/wow.js (from https://Smartgentrade.com/)
+18:15:54	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/js/wow.js (from https://smartgentrade.com/)
 
-18:15:54	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/js/function.js (from https://Smartgentrade.com/)
+18:15:54	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/js/function.js (from https://smartgentrade.com/)
 
-18:15:54	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/webfonts/fa-brands-400.woff2 (from https://Smartgentrade.com/css/all.min.css)
+18:15:54	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/webfonts/fa-brands-400.woff2 (from https://smartgentrade.com/css/all.min.css)
 
-18:15:54	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/webfonts/fa-brands-400.ttf (from https://Smartgentrade.com/css/all.min.css)
+18:15:54	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/webfonts/fa-brands-400.ttf (from https://smartgentrade.com/css/all.min.css)
 
-18:15:54	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/webfonts/fa-regular-400.woff2 (from https://Smartgentrade.com/css/all.min.css)
+18:15:54	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/webfonts/fa-regular-400.woff2 (from https://smartgentrade.com/css/all.min.css)
 
-18:15:54	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/webfonts/fa-regular-400.ttf (from https://Smartgentrade.com/css/all.min.css)
+18:15:54	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/webfonts/fa-regular-400.ttf (from https://smartgentrade.com/css/all.min.css)
 
-18:15:54	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/webfonts/fa-solid-900.woff2 (from https://Smartgentrade.com/css/all.min.css)
+18:15:54	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/webfonts/fa-solid-900.woff2 (from https://smartgentrade.com/css/all.min.css)
 
-18:15:54	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/webfonts/fa-solid-900.ttf (from https://Smartgentrade.com/css/all.min.css)
+18:15:54	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/webfonts/fa-solid-900.ttf (from https://smartgentrade.com/css/all.min.css)
 
-18:15:54	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/webfonts/fa-v4compatibility.woff2 (from https://Smartgentrade.com/css/all.min.css)
+18:15:54	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/webfonts/fa-v4compatibility.woff2 (from https://smartgentrade.com/css/all.min.css)
 
-18:15:54	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/webfonts/fa-v4compatibility.ttf (from https://Smartgentrade.com/css/all.min.css)
+18:15:54	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/webfonts/fa-v4compatibility.ttf (from https://smartgentrade.com/css/all.min.css)
 
-18:15:54	Error: 	"Not Found" (404) at link https://Smartgentrade.com/images/bg-hero_newg.png (from https://Smartgentrade.com/css/custom.css)
+18:15:54	Error: 	"Not Found" (404) at link https://smartgentrade.com/images/bg-hero_newg.png (from https://smartgentrade.com/css/custom.css)
 
-18:15:55	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-left.svg (from https://Smartgentrade.com/css/custom.css)
+18:15:55	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-left.svg (from https://smartgentrade.com/css/custom.css)
 
-18:15:55	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-right.svg (from https://Smartgentrade.com/css/custom.css)
+18:15:55	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-right.svg (from https://smartgentrade.com/css/custom.css)
 
-18:15:55	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-checkbox.png (from https://Smartgentrade.com/css/custom.css)
+18:15:55	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-checkbox.png (from https://smartgentrade.com/css/custom.css)
 
-18:15:55	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/download-app-item-bg.svg (from https://Smartgentrade.com/css/custom.css)
+18:15:55	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/download-app-item-bg.svg (from https://smartgentrade.com/css/custom.css)
 
-18:15:55	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/crypto-calculator-bg.png (from https://Smartgentrade.com/css/custom.css)
+18:15:55	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/crypto-calculator-bg.png (from https://smartgentrade.com/css/custom.css)
 
-18:15:55	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-down-arrow.svg (from https://Smartgentrade.com/css/custom.css)
+18:15:55	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-down-arrow.svg (from https://smartgentrade.com/css/custom.css)
 
-18:15:55	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/testimonial-2.png (from https://Smartgentrade.com/css/custom.css)
+18:15:55	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/testimonial-2.png (from https://smartgentrade.com/css/custom.css)
 
-18:15:55	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-hero-image.png (from https://Smartgentrade.com/css/custom.css)
+18:15:55	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-hero-image.png (from https://smartgentrade.com/css/custom.css)
 
-18:15:55	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-double-quotes-1.svg (from https://Smartgentrade.com/css/custom.css)
+18:15:55	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-double-quotes-1.svg (from https://smartgentrade.com/css/custom.css)
 
-18:15:55	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-double-quotes-2.svg (from https://Smartgentrade.com/css/custom.css)
+18:15:55	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-double-quotes-2.svg (from https://smartgentrade.com/css/custom.css)
 
-18:15:55	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-all.mp4 (from https://Smartgentrade.com/why_Smartgentrade)
+18:15:55	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-all.mp4 (from https://smartgentrade.com/why_smartgentrade)
 
-18:15:55	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-image-stock.jpg (from https://Smartgentrade.com/why_Smartgentrade)
+18:15:55	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-image-stock.jpg (from https://smartgentrade.com/why_smartgentrade)
 
-18:15:55	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-copy-trade-icon.png (from https://Smartgentrade.com/why_Smartgentrade)
+18:15:55	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-copy-trade-icon.png (from https://smartgentrade.com/why_smartgentrade)
 
-18:15:55	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-manager-icon.png (from https://Smartgentrade.com/why_Smartgentrade)
+18:15:55	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-manager-icon.png (from https://smartgentrade.com/why_smartgentrade)
 
-18:15:56	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-top.png (from https://Smartgentrade.com/why_Smartgentrade)
+18:15:56	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-top.png (from https://smartgentrade.com/why_smartgentrade)
 
-18:15:56	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-real-order-execution-icon.png (from https://Smartgentrade.com/why_Smartgentrade)
+18:15:56	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-real-order-execution-icon.png (from https://smartgentrade.com/why_smartgentrade)
 
-18:15:57	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-friendly-mobile-view-icon.png (from https://Smartgentrade.com/why_Smartgentrade)
+18:15:57	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-friendly-mobile-view-icon.png (from https://smartgentrade.com/why_smartgentrade)
 
-18:15:57	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-daily-news-icon.png (from https://Smartgentrade.com/why_Smartgentrade)
+18:15:57	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-daily-news-icon.png (from https://smartgentrade.com/why_smartgentrade)
 
-18:15:57	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-trade.jpg (from https://Smartgentrade.com/why_Smartgentrade)
+18:15:57	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-trade.jpg (from https://smartgentrade.com/why_smartgentrade)
 
-18:15:57	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-passion.png (from https://Smartgentrade.com/careers)
+18:15:57	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-passion.png (from https://smartgentrade.com/careers)
 
-18:15:57	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-humility-2.png (from https://Smartgentrade.com/careers)
+18:15:57	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-humility-2.png (from https://smartgentrade.com/careers)
 
-18:15:57	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-sustainable.png (from https://Smartgentrade.com/careers)
+18:15:57	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-sustainable.png (from https://smartgentrade.com/careers)
 
-18:15:57	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-strive-image.png (from https://Smartgentrade.com/careers)
+18:15:57	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-strive-image.png (from https://smartgentrade.com/careers)
 
-18:15:57	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-medical.png (from https://Smartgentrade.com/careers)
+18:15:57	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-medical.png (from https://smartgentrade.com/careers)
 
-18:15:57	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-friendly-office.png (from https://Smartgentrade.com/careers)
+18:15:57	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-friendly-office.png (from https://smartgentrade.com/careers)
 
-18:15:57	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-family-care-1.png (from https://Smartgentrade.com/careers)
+18:15:57	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-family-care-1.png (from https://smartgentrade.com/careers)
 
-18:15:57	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/quivox-trade-employee.webp (from https://Smartgentrade.com/careers)
+18:15:57	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/quivox-trade-employee.webp (from https://smartgentrade.com/careers)
 
-18:15:58	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-working.png (from https://Smartgentrade.com/careers)
+18:15:58	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-working.png (from https://smartgentrade.com/careers)
 
-18:15:58	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/quivox-trade-partnership.jpg (from https://Smartgentrade.com/careers)
+18:15:58	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/quivox-trade-partnership.jpg (from https://smartgentrade.com/careers)
 
-18:15:58	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-affiliate.png (from https://Smartgentrade.com/affiliate)
+18:15:58	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-affiliate.png (from https://smartgentrade.com/affiliate)
 
-18:15:58	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-stats.png (from https://Smartgentrade.com/affiliate)
+18:15:58	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-stats.png (from https://smartgentrade.com/affiliate)
 
-18:15:58	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-manager.png (from https://Smartgentrade.com/affiliate)
+18:15:58	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-manager.png (from https://smartgentrade.com/affiliate)
 
-18:15:58	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-programs.png (from https://Smartgentrade.com/affiliate)
+18:15:58	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-programs.png (from https://smartgentrade.com/affiliate)
 
-18:15:58	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-pay.png (from https://Smartgentrade.com/affiliate)
+18:15:58	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-pay.png (from https://smartgentrade.com/affiliate)
 
-18:15:58	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-local.png (from https://Smartgentrade.com/affiliate)
+18:15:58	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-local.png (from https://smartgentrade.com/affiliate)
 
-18:15:58	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/get-link-icon.png (from https://Smartgentrade.com/affiliate)
+18:15:58	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/get-link-icon.png (from https://smartgentrade.com/affiliate)
 
-18:15:58	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/get-clicks-icon.png (from https://Smartgentrade.com/affiliate)
+18:15:58	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/get-clicks-icon.png (from https://smartgentrade.com/affiliate)
 
-18:15:58	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/get-profits-icon.png (from https://Smartgentrade.com/affiliate)
+18:15:58	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/get-profits-icon.png (from https://smartgentrade.com/affiliate)
 
-18:15:58	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-insurance.png (from https://Smartgentrade.com/insurance)
+18:15:58	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-insurance.png (from https://smartgentrade.com/insurance)
 
-18:15:58	Error: 	"Forbidden" (403) at link https://Smartgentrade.com/credit-spread/ (from https://Smartgentrade.com/credit-spread.php)
+18:15:58	Error: 	"Forbidden" (403) at link https://smartgentrade.com/credit-spread/ (from https://smartgentrade.com/credit-spread.php)
 
-18:15:58	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-hero-image-retirement.jpg (from https://Smartgentrade.com/credit-spread.php)
+18:15:58	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-hero-image-retirement.jpg (from https://smartgentrade.com/credit-spread.php)
 
-18:15:58	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/credit-spread/signup-credit-spread.php (from https://Smartgentrade.com/credit-spread.php)
+18:15:58	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/credit-spread/signup-credit-spread.php (from https://smartgentrade.com/credit-spread.php)
 
-18:15:58	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/credit-spread/credit-spread-singin.php (from https://Smartgentrade.com/credit-spread.php)
+18:15:58	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/credit-spread/credit-spread-singin.php (from https://smartgentrade.com/credit-spread.php)
 
-18:15:58	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-income.png (from https://Smartgentrade.com/credit-spread.php)
+18:15:58	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-income.png (from https://smartgentrade.com/credit-spread.php)
 
-18:15:58	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-capped-lisk.png (from https://Smartgentrade.com/credit-spread.php)
+18:15:58	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-capped-lisk.png (from https://smartgentrade.com/credit-spread.php)
 
-18:15:58	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-time-advantage.png (from https://Smartgentrade.com/credit-spread.php)
+18:15:58	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-time-advantage.png (from https://smartgentrade.com/credit-spread.php)
 
-18:15:58	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-win-win-strategy.png (from https://Smartgentrade.com/credit-spread.php)
+18:15:58	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-win-win-strategy.png (from https://smartgentrade.com/credit-spread.php)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/credit-spread/signup-credit-spread (from https://Smartgentrade.com/credit-spread.php)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/credit-spread/signup-credit-spread (from https://smartgentrade.com/credit-spread.php)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-reliable-income.png (from https://Smartgentrade.com/credit-spread.php)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-reliable-income.png (from https://smartgentrade.com/credit-spread.php)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-stocks.png (from https://Smartgentrade.com/credit-spread.php)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-stocks.png (from https://smartgentrade.com/credit-spread.php)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-retirement.png (from https://Smartgentrade.com/credit-spread.php)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-retirement.png (from https://smartgentrade.com/credit-spread.php)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-combine-strategy.jpg (from https://Smartgentrade.com/credit-spread.php)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-combine-strategy.jpg (from https://smartgentrade.com/credit-spread.php)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-automaated-recommendation.png (from https://Smartgentrade.com/credit-spread.php)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-automaated-recommendation.png (from https://smartgentrade.com/credit-spread.php)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-risk-management.png (from https://Smartgentrade.com/credit-spread.php)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-risk-management.png (from https://smartgentrade.com/credit-spread.php)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-education.png (from https://Smartgentrade.com/credit-spread.php)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-education.png (from https://smartgentrade.com/credit-spread.php)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-retirment.png (from https://Smartgentrade.com/credit-spread.php)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-retirment.png (from https://smartgentrade.com/credit-spread.php)
 
-18:15:59	Error: 	"Not Found" (404) at link https://Smartgentrade.com/setrading-services (from https://Smartgentrade.com/trading-services)
+18:15:59	Error: 	"Not Found" (404) at link https://smartgentrade.com/setrading-services (from https://smartgentrade.com/trading-services)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-mt-4.png (from https://Smartgentrade.com/trading-services)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-mt-4.png (from https://smartgentrade.com/trading-services)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-advance-trading-tools.png (from https://Smartgentrade.com/trading-signal)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-advance-trading-tools.png (from https://smartgentrade.com/trading-signal)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-copy.png (from https://Smartgentrade.com/copytrading)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-copy.png (from https://smartgentrade.com/copytrading)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-mirror-trade.mp4 (from https://Smartgentrade.com/copytrading)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-mirror-trade.mp4 (from https://smartgentrade.com/copytrading)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/set-up-copys.png (from https://Smartgentrade.com/copytrading)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/set-up-copys.png (from https://smartgentrade.com/copytrading)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/monitor.png (from https://Smartgentrade.com/copytrading)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/monitor.png (from https://smartgentrade.com/copytrading)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/no-forex-experiencw.png (from https://Smartgentrade.com/copytrading)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/no-forex-experiencw.png (from https://smartgentrade.com/copytrading)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/gain-insight.png (from https://Smartgentrade.com/copytrading)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/gain-insight.png (from https://smartgentrade.com/copytrading)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/diversify-portfolio.png (from https://Smartgentrade.com/copytrading)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/diversify-portfolio.png (from https://smartgentrade.com/copytrading)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/fast-trade-execution.png (from https://Smartgentrade.com/copytrading)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/fast-trade-execution.png (from https://smartgentrade.com/copytrading)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/total-control.png (from https://Smartgentrade.com/copytrading)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/total-control.png (from https://smartgentrade.com/copytrading)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/set-it-running.png (from https://Smartgentrade.com/copytrading)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/set-it-running.png (from https://smartgentrade.com/copytrading)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/invest-withdraw.png (from https://Smartgentrade.com/copytrading)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/invest-withdraw.png (from https://smartgentrade.com/copytrading)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/quivox-trade-benefit.png (from https://Smartgentrade.com/copytrading)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/quivox-trade-benefit.png (from https://smartgentrade.com/copytrading)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/master.png (from https://Smartgentrade.com/copytrading)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/master.png (from https://smartgentrade.com/copytrading)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/master-create-account.png (from https://Smartgentrade.com/master)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/master-create-account.png (from https://smartgentrade.com/master)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/setup-account.png (from https://Smartgentrade.com/master)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/setup-account.png (from https://smartgentrade.com/master)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/gain.png (from https://Smartgentrade.com/master)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/gain.png (from https://smartgentrade.com/master)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/diversify.png (from https://Smartgentrade.com/master)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/diversify.png (from https://smartgentrade.com/master)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/tracking-wallet.png (from https://Smartgentrade.com/master)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/tracking-wallet.png (from https://smartgentrade.com/master)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/deposit-icon.png (from https://Smartgentrade.com/master)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/deposit-icon.png (from https://smartgentrade.com/master)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/device.png (from https://Smartgentrade.com/master)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/device.png (from https://smartgentrade.com/master)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-fx2.png (from https://Smartgentrade.com/forex-cfds)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-fx2.png (from https://smartgentrade.com/forex-cfds)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-fx5.png (from https://Smartgentrade.com/forex-cfds)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-fx5.png (from https://smartgentrade.com/forex-cfds)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-fx6.png (from https://Smartgentrade.com/forex-cfds)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-fx6.png (from https://smartgentrade.com/forex-cfds)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-fx7.png (from https://Smartgentrade.com/forex-cfds)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-fx7.png (from https://smartgentrade.com/forex-cfds)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-fx1.png (from https://Smartgentrade.com/forex-cfds)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-fx1.png (from https://smartgentrade.com/forex-cfds)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/trade-strat-iq-forex.webp (from https://Smartgentrade.com/forex-cfds)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/trade-strat-iq-forex.webp (from https://smartgentrade.com/forex-cfds)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-1.webp (from https://Smartgentrade.com/forex-cfds)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-1.webp (from https://smartgentrade.com/forex-cfds)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-2.webp (from https://Smartgentrade.com/forex-cfds)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-2.webp (from https://smartgentrade.com/forex-cfds)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-3.webp (from https://Smartgentrade.com/forex-cfds)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-3.webp (from https://smartgentrade.com/forex-cfds)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-4.webp (from https://Smartgentrade.com/forex-cfds)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-4.webp (from https://smartgentrade.com/forex-cfds)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-5.webp (from https://Smartgentrade.com/forex-cfds)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-5.webp (from https://smartgentrade.com/forex-cfds)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-6.webp (from https://Smartgentrade.com/forex-cfds)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-6.webp (from https://smartgentrade.com/forex-cfds)
 
-18:15:59	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-c1.png (from https://Smartgentrade.com/commodities)
+18:15:59	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-c1.png (from https://smartgentrade.com/commodities)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-c2.png (from https://Smartgentrade.com/commodities)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-c2.png (from https://smartgentrade.com/commodities)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-c3.png (from https://Smartgentrade.com/commodities)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-c3.png (from https://smartgentrade.com/commodities)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-c4.png (from https://Smartgentrade.com/commodities)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-c4.png (from https://smartgentrade.com/commodities)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-c5.png (from https://Smartgentrade.com/commodities)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-c5.png (from https://smartgentrade.com/commodities)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-c6.png (from https://Smartgentrade.com/commodities)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-c6.png (from https://smartgentrade.com/commodities)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-c7.png (from https://Smartgentrade.com/commodities)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-c7.png (from https://smartgentrade.com/commodities)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-c9.png (from https://Smartgentrade.com/commodities)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-c9.png (from https://smartgentrade.com/commodities)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/commodities.webp (from https://Smartgentrade.com/commodities)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/commodities.webp (from https://smartgentrade.com/commodities)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-i2.png (from https://Smartgentrade.com/indices-cfd)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-i2.png (from https://smartgentrade.com/indices-cfd)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-i5.png (from https://Smartgentrade.com/indices-cfd)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-i5.png (from https://smartgentrade.com/indices-cfd)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-i7.png (from https://Smartgentrade.com/indices-cfd)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-i7.png (from https://smartgentrade.com/indices-cfd)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-i12.png (from https://Smartgentrade.com/indices-cfd)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-i12.png (from https://smartgentrade.com/indices-cfd)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/indices.webp (from https://Smartgentrade.com/indices-cfd)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/indices.webp (from https://smartgentrade.com/indices-cfd)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-r2.png (from https://Smartgentrade.com/real-stocks)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-r2.png (from https://smartgentrade.com/real-stocks)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-r4.png (from https://Smartgentrade.com/real-stocks)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-r4.png (from https://smartgentrade.com/real-stocks)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-r5.png (from https://Smartgentrade.com/real-stocks)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-r5.png (from https://smartgentrade.com/real-stocks)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-r8.png (from https://Smartgentrade.com/real-stocks)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-r8.png (from https://smartgentrade.com/real-stocks)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-r9.png (from https://Smartgentrade.com/real-stocks)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-r9.png (from https://smartgentrade.com/real-stocks)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-r11.png (from https://Smartgentrade.com/real-stocks)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-r11.png (from https://smartgentrade.com/real-stocks)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-r10.png (from https://Smartgentrade.com/real-stocks)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-r10.png (from https://smartgentrade.com/real-stocks)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-r12.png (from https://Smartgentrade.com/real-stocks)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-r12.png (from https://smartgentrade.com/real-stocks)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-r14.png (from https://Smartgentrade.com/real-stocks)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-r14.png (from https://smartgentrade.com/real-stocks)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-r13.png (from https://Smartgentrade.com/real-stocks)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-r13.png (from https://smartgentrade.com/real-stocks)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/mobile-img-1.png (from https://Smartgentrade.com/real-stocks)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/mobile-img-1.png (from https://smartgentrade.com/real-stocks)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/mobile-img-2.png (from https://Smartgentrade.com/real-stocks)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/mobile-img-2.png (from https://smartgentrade.com/real-stocks)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/real-stocks.webp (from https://Smartgentrade.com/real-stocks)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/real-stocks.webp (from https://smartgentrade.com/real-stocks)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/Smartgentrade-market.mp4 (from https://Smartgentrade.com/real-stocks)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/smartgentrade-market.mp4 (from https://smartgentrade.com/real-stocks)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/futures.webp (from https://Smartgentrade.com/futures)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/futures.webp (from https://smartgentrade.com/futures)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/video1.mp4 (from https://Smartgentrade.com/futures)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/video1.mp4 (from https://smartgentrade.com/futures)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-cr1.png (from https://Smartgentrade.com/cryptocurrencies)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-cr1.png (from https://smartgentrade.com/cryptocurrencies)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-cr3.png (from https://Smartgentrade.com/cryptocurrencies)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-cr3.png (from https://smartgentrade.com/cryptocurrencies)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-cr4.png (from https://Smartgentrade.com/cryptocurrencies)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-cr4.png (from https://smartgentrade.com/cryptocurrencies)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-cr5.png (from https://Smartgentrade.com/cryptocurrencies)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-cr5.png (from https://smartgentrade.com/cryptocurrencies)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-cr7.png (from https://Smartgentrade.com/cryptocurrencies)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-cr7.png (from https://smartgentrade.com/cryptocurrencies)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-cr8.png (from https://Smartgentrade.com/cryptocurrencies)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-cr8.png (from https://smartgentrade.com/cryptocurrencies)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-cr9.png (from https://Smartgentrade.com/cryptocurrencies)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-cr9.png (from https://smartgentrade.com/cryptocurrencies)
 
-18:16:00	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-cr11.png (from https://Smartgentrade.com/cryptocurrencies)
+18:16:00	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-cr11.png (from https://smartgentrade.com/cryptocurrencies)
 
-18:16:01	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-cr10.png (from https://Smartgentrade.com/cryptocurrencies)
+18:16:01	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-cr10.png (from https://smartgentrade.com/cryptocurrencies)
 
-18:16:01	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/icon-ticker-cr12.png (from https://Smartgentrade.com/cryptocurrencies)
+18:16:01	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/icon-ticker-cr12.png (from https://smartgentrade.com/cryptocurrencies)
 
-18:16:01	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/crypto.webp (from https://Smartgentrade.com/cryptocurrencies)
+18:16:01	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/crypto.webp (from https://smartgentrade.com/cryptocurrencies)
 
-18:16:01	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/macbook-pro-4.jpg (from https://Smartgentrade.com/promotion)
+18:16:01	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/macbook-pro-4.jpg (from https://smartgentrade.com/promotion)
 
-18:16:01	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/iphone16.jpg (from https://Smartgentrade.com/promotion)
+18:16:01	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/iphone16.jpg (from https://smartgentrade.com/promotion)
 
-18:16:01	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/samsung.jpg (from https://Smartgentrade.com/promotion)
+18:16:01	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/samsung.jpg (from https://smartgentrade.com/promotion)
 
-18:16:01	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/iphone16-quivox-trade-promotion.png (from https://Smartgentrade.com/promotion)
+18:16:01	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/iphone16-quivox-trade-promotion.png (from https://smartgentrade.com/promotion)
 
-18:16:01	Error: 	"Not Found" (404) at link https://Smartgentrade.com/style.css (from https://Smartgentrade.com/register)
+18:16:01	Error: 	"Not Found" (404) at link https://smartgentrade.com/style.css (from https://smartgentrade.com/register)
 
-18:16:01	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/users/signup-organization (from https://Smartgentrade.com/register)
+18:16:01	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/users/signup-organization (from https://smartgentrade.com/register)
 
-18:16:01	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/img/organization.png (from https://Smartgentrade.com/register)
+18:16:01	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/img/organization.png (from https://smartgentrade.com/register)
 
-18:16:01	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/users/signup-individual (from https://Smartgentrade.com/register)
+18:16:01	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/users/signup-individual (from https://smartgentrade.com/register)
 
-18:16:01	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/img/individual.png (from https://Smartgentrade.com/register)
+18:16:01	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/img/individual.png (from https://smartgentrade.com/register)
 
-18:16:01	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/users/organization-signin (from https://Smartgentrade.com/login)
+18:16:01	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/users/organization-signin (from https://smartgentrade.com/login)
 
-18:16:01	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/users/individual-singin (from https://Smartgentrade.com/login)
+18:16:01	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/users/individual-singin (from https://smartgentrade.com/login)
 
-18:16:02	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/newyorktimes.jpg (from https://Smartgentrade.com/master-rating)
+18:16:02	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/newyorktimes.jpg (from https://smartgentrade.com/master-rating)
 
-18:16:02	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/jacklarkin.jpg (from https://Smartgentrade.com/master-rating)
+18:16:02	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/jacklarkin.jpg (from https://smartgentrade.com/master-rating)
 
-18:16:02	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/noah.jpg (from https://Smartgentrade.com/master-rating)
+18:16:02	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/noah.jpg (from https://smartgentrade.com/master-rating)
 
-18:16:02	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/noahj.jpg (from https://Smartgentrade.com/master-rating)
+18:16:02	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/noahj.jpg (from https://smartgentrade.com/master-rating)
 
-18:16:02	Error: 	"Too Many Requests" (429) at link https://Smartgentrade.com/images/blackdaimond.jpg (from https://Smartgentrade.com/master-rating)
+18:16:02	Error: 	"Too Many Requests" (429) at link https://smartgentrade.com/images/blackdaimond.jpg (from https://smartgentrade.com/master-rating)
 
-18:16:02	Error: 	"Not Found" (404) at link https://Smartgentrade.com/Version/ (from https://Smartgentrade.com/js/swiper-bundle.min.js)
+18:16:02	Error: 	"Not Found" (404) at link https://smartgentrade.com/Version/ (from https://smartgentrade.com/js/swiper-bundle.min.js)
 
-18:16:02	Error: 	"Not Found" (404) at link https://Smartgentrade.com/e (from https://Smartgentrade.com/js/swiper-bundle.min.js)
+18:16:02	Error: 	"Not Found" (404) at link https://smartgentrade.com/e (from https://smartgentrade.com/js/swiper-bundle.min.js)
 
-18:16:02	Error: 	"Not Found" (404) at link https://Smartgentrade.com/t.params.url (from https://Smartgentrade.com/js/swiper-bundle.min.js)
+18:16:02	Error: 	"Not Found" (404) at link https://smartgentrade.com/t.params.url (from https://smartgentrade.com/js/swiper-bundle.min.js)
 
 
 

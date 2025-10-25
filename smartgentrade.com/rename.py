@@ -6,7 +6,7 @@ folder = r"C:\webby\flux\fluxoption.com\images"
 
 # 🔹 Define replacements (case-sensitive)
 replacements = {
-    "Wealthhnest": "Smartgentrade",
+    "Wealthhnest": "smartgentrade",
 }
 
 # Walk through files in the folder

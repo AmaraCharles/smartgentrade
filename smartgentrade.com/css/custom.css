@@ -680,7 +680,7 @@ header.main-header .header-sticky.active{
 
 .hero{	
 	padding: 180px 0;
-	background: url("../images/Smartgentrade-hero-image.jpg") no-repeat center center;
+	background: url("../images/smartgentrade-hero-image.jpg") no-repeat center center;
 	background-size: cover;
 	position: relative;
 	text-align: center;
@@ -1866,7 +1866,7 @@ header.main-header .header-sticky.active{
 
 .page-header{
 	padding: 180px 0;
-	background: url("../images/Smartgentrade-hero-image.html") no-repeat center center;
+	background: url("../images/smartgentrade-hero-image.html") no-repeat center center;
 	background-size: cover;
 	position: relative;
 	overflow: hidden;
