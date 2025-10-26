@@ -624,7 +624,7 @@ function loadPage(page) {
 
 // ==================== PAGE RENDERERS ====================
 function renderDashboardPage() {
-  const user = getUserData(); // however you retrieve user info
+  const user = getUserData();
 
   const html = `
     <div style="margin-bottom: 1.5rem;">
@@ -658,19 +658,43 @@ function renderDashboardPage() {
     </div>
 
     <!-- ✅ TradingView Widgets -->
-    <div class="tv-widgets-container">
-      <div class="card tv-widget" id="tv-widget-1"></div>
-      <div class="card tv-widget" id="tv-widget-2"></div>
+    <div class="tv-widgets-container" style="
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    ">
+      <div class="card tv-widget" id="tv-widget-1" style="
+        flex: 1 1 48%;
+        min-width: 300px;
+      "></div>
+      <div class="card tv-widget" id="tv-widget-2" style="
+        flex: 1 1 48%;
+        min-width: 300px;
+      "></div>
     </div>
+
+    <style>
+      @media (max-width: 768px) {
+        .tv-widgets-container {
+          flex-direction: column;
+        }
+        .tv-widget {
+          width: 100% !important;
+        }
+      }
+    </style>
   `;
 
   const content = document.getElementById('content');
   content.innerHTML = html;
 
-  // Initialize tradingview widgets
-  loadTickerTapeWidget();
-  loadTradingViewWidget("tv-widget-1", "NASDAQ:TSLA");
-  loadTradingViewWidget("tv-widget-2", "NASDAQ:NVDA");
+  // ✅ Delay widget loading slightly to ensure DOM exists
+  setTimeout(() => {
+    loadTickerTapeWidget();
+    loadTradingViewWidget("tv-widget-1", "NASDAQ:TSLA");
+    loadTradingViewWidget("tv-widget-2", "NASDAQ:NVDA");
+  }, 150);
 }
 
 function loadTickerTapeWidget() {
@@ -708,6 +732,8 @@ function loadTickerTapeWidget() {
 function loadTradingViewWidget(containerId, symbol) {
   const container = document.getElementById(containerId);
   if (!container) return;
+
+  container.innerHTML = ''; // clear before appending new one
 
   const script = document.createElement('script');
   script.type = 'text/javascript';
