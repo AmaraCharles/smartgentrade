@@ -2157,10 +2157,86 @@ function renderProfilePage() {
         <button class="btn btn-primary" onclick="handleEditProfile()">Edit Profile</button>
         <button class="btn" style="background-color: transparent; border: 1px solid hsl(var(--border)); color: hsl(var(--foreground));" onclick="handleUpdateKYC()">Update KYC</button>
       </div>
+     <button class="btn" style="background-color: transparent;margin-top:10px;  border: 1px solid hsl(var(--border)); color: hsl(var(--foreground));" onclick="handleChangePassword()">Change Password</button>
+
     </div>
   `;
   
   content.innerHTML = html;
+}
+async function handleChangePassword() {
+  // Fetch user info from localStorage/server
+  const storedUser = localStorage.getItem('user');
+  if (!storedUser) return alert('No user data found');
+
+  const userFromLS = JSON.parse(storedUser);
+
+  let userInfo;
+  try {
+    const response = await $.ajax({
+      type: "GET",
+      url: `https://wealt-render.onrender.com/users/${userFromLS.email}`, // Adjust your endpoint
+      dataType: "json",
+      timeout: 30000
+    });
+    userInfo = response.data;
+    localStorage.setItem("userData", JSON.stringify(userInfo));
+  } catch (err) {
+    console.error('Error fetching user info:', err);
+    return alert('Failed to fetch user info.');
+  }
+
+  // SweetAlert form for password
+  const { value: formValues } = await Swal.fire({
+    title: 'Change Password',
+    html: `
+      <input type="password" id="swalNewPassword" class="swal2-input" placeholder="New Password">
+      <input type="password" id="swalConfirmPassword" class="swal2-input" placeholder="Confirm Password">
+    `,
+    focusConfirm: false,
+    showCancelButton: true,
+    confirmButtonText: 'Save Password',
+    preConfirm: () => {
+      return {
+        password: document.getElementById('swalNewPassword').value.trim(),
+        confirmPassword: document.getElementById('swalConfirmPassword').value.trim()
+      };
+    }
+  });
+
+  if (!formValues) return; // User canceled
+
+  const { password, confirmPassword } = formValues;
+
+  if (!password || !confirmPassword) return Swal.fire('Error', 'Both fields are required', 'error');
+  if (password !== confirmPassword) return Swal.fire('Error', 'Passwords do not match', 'error');
+
+  // Show loading indicator
+  Swal.fire({ title: 'Updating...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+  // Send request to backend
+  try {
+    await $.ajax({
+      type: "PUT",
+      url: `https://wealt-render.onrender.com/auth/${userInfo._id}/reset-password`,
+      dataType: "json",
+      data: { password },
+      timeout: 30000
+    });
+
+    Swal.fire({
+      title: "Success",
+      text: "Your password has been successfully reset.",
+      icon: "success",
+      timer: 3000
+    });
+
+    
+
+  } catch (err) {
+    console.error('Error resetting password:', err);
+    Swal.fire('Error', 'Failed to reset password. Please try again.', 'error');
+  }
 }
 
 
@@ -2735,14 +2811,82 @@ function handleClaimReward(rewardId, title, amount) {
   }
 }
 
-function handleEditProfile() {
-  apiLog('EDIT_PROFILE_CLICKED', {});
-  const newFirstName = prompt('Enter your first name:');
-  if (newFirstName) {
-    updateUserData({ firstName: newFirstName });
+async function handleEditProfile() {
+  // Fetch user info from localStorage/server
+  const storedUser = localStorage.getItem('user');
+  if (!storedUser) return alert('No user data found');
+
+  const userFromLS = JSON.parse(storedUser);
+
+  let userInfo;
+  try {
+    const response = await $.ajax({
+      type: "GET",
+      url: `https://wealt-render.onrender.com/users/${userFromLS.email}`,
+      dataType: "json",
+      timeout: 30000
+    });
+    userInfo = response.data;
+    localStorage.setItem("userData", JSON.stringify(userInfo));
+  } catch (err) {
+    console.error('Error fetching user info:', err);
+    return alert('Failed to fetch profile info.');
+  }
+
+  // SweetAlert form
+  const { value: formValues } = await Swal.fire({
+    title: 'Edit Profile',
+    html: `
+      <input id="swalFirstName" class="swal2-input" placeholder="First Name" value="${userInfo.firstName}">
+      <input id="swalLastName" class="swal2-input" placeholder="Last Name" value="${userInfo.lastName}">
+      <input id="swalEmail" class="swal2-input" placeholder="Email" value="${userInfo.email}">
+      <input id="swalMobile" class="swal2-input" placeholder="Mobile" value="${userInfo.mobile}">
+      <input id="swalCountry" class="swal2-input" placeholder="Country" value="${userInfo.country}">
+    `,
+    focusConfirm: false,
+    showCancelButton: true,
+    confirmButtonText: 'Save Changes',
+    preConfirm: () => {
+      return {
+        firstName: document.getElementById('swalFirstName').value.trim(),
+        lastName: document.getElementById('swalLastName').value.trim(),
+        email: document.getElementById('swalEmail').value.trim(),
+        mobile: document.getElementById('swalMobile').value.trim(),
+        country: document.getElementById('swalCountry').value.trim(),
+      }
+    }
+  });
+
+  if (!formValues) return; // User canceled
+
+  // Validate inputs
+  const { firstName, lastName, email, mobile, country } = formValues;
+  if (!firstName || !lastName || !email) return Swal.fire('Error', 'First Name, Last Name, and Email are required', 'error');
+
+  // Update profile via AJAX
+  try {
+    const updateResponse = await $.ajax({
+      type: "PUT",
+      url: `https://wealt-render.onrender.com/users/${userInfo._id}/profile/update`,
+      dataType: "json",
+      data: { firstName, lastName, email, mobile, country },
+      timeout: 30000
+    });
+
+    // Update localStorage
+    localStorage.setItem("userData", JSON.stringify({ ...userInfo, firstName, lastName, email, mobile, country }));
+
+    Swal.fire('Success', 'Profile successfully updated', 'success');
+
+    // Optionally refresh profile page
     renderProfilePage();
+
+  } catch (err) {
+    console.error('Error updating profile:', err);
+    Swal.fire('Error', 'Failed to update profile', 'error');
   }
 }
+
 
 // ==========================
 // 🔹 KYC HANDLER (All Pure JS)
