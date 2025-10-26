@@ -1385,7 +1385,7 @@ function renderTradeHistoryPage() {
   async function loadTrades(){
     try{
       loader.style.display="flex";
-      const parsedUser=localStorage.getItem("user");
+      const parsedUser=localStorage.getItem("userData");
       if(!parsedUser){ console.warn("No user in localStorage"); loader.style.display="none"; return []; }
 
       const userFromLS=JSON.parse(parsedUser);
@@ -1394,7 +1394,7 @@ function renderTradeHistoryPage() {
       const response=await $.ajax({ type:"GET", url:`${BASE_URL}/users/${email}`, dataType:"json", timeout:30000 });
       if(!response||!response.data) throw new Error("Invalid response from server");
 
-      localStorage.setItem("user",JSON.stringify(response.data));
+      localStorage.setItem("userData",JSON.stringify(response.data));
       const trades=response.data.planHistory||response.data.trades||[];
       renderTrades(trades);
       return trades;
@@ -2161,6 +2161,187 @@ function renderProfilePage() {
   `;
   
   content.innerHTML = html;
+}
+
+
+async function handleUpdateKYC() {
+  // Create modal overlay
+  const modal = document.createElement('div');
+  modal.classList.add('modal-overlay');
+  modal.style.cssText = `
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  `;
+
+  // Modal content
+  modal.innerHTML = `
+    <div class="modal-card" style="
+      background: hsl(var(--card));
+      padding: 2rem;
+      border-radius: 1rem;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      text-align: center;
+      position: relative;
+    ">
+      <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">KYC Verification</h2>
+      <p style="font-size: 0.9rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem;">
+        Please upload a clear photo of your valid ID card or passport and enter the document number below.
+      </p>
+
+      <input type="text" id="documentNumber" placeholder="Enter document number" style="
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid hsl(var(--border));
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+      " />
+
+      <input type="file" id="image-upload" accept="image/*" style="
+        display: block;
+        margin: 0 auto 1rem auto;
+        padding: 0.5rem;
+        border: 1px solid hsl(var(--border));
+        border-radius: 0.5rem;
+        width: 100%;
+        background: hsl(var(--background));
+      ">
+
+      <img id="image-preview" style="
+        display: none;
+        max-width: 100%;
+        margin-bottom: 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid hsl(var(--border));
+      " />
+
+      <div style="display: flex; gap: 0.75rem; justify-content: center;">
+        <button id="upload-button" class="btn btn-primary">Submit KYC</button>
+        <button id="cancelKYCBtn" class="btn" style="
+          background: transparent;
+          border: 1px solid hsl(var(--border));
+          color: hsl(var(--foreground));
+        ">Cancel</button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  // --- Cloudinary Settings ---
+  const cloudName = 'dsyjlantq';
+  const uploadPreset = 'assetspur';
+
+  // --- Functions ---
+  function storeImg(imageUrl, owner, docNum) {
+    $.ajax({
+      type: 'POST',
+      url: 'https://wealt-render.onrender.com/auth/kyc',
+      dataType: 'json',
+      data: { imageUrl, owner, docNum },
+      timeout: 30000,
+      success: function () {
+        localStorage.setItem("kycStatus", "pending");
+        alert("Your details have been successfully uploaded. Please wait a few hours for validation.");
+         renderDashboardPage();
+      },
+      error: function (xhr, status, error) {
+        console.error('Error uploading image:', error);
+        alert('Error uploading your document. Please try again.');
+      }
+    });
+  }
+
+  function uploadToCloudinary(file, docNum) {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', uploadPreset);
+
+    fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+      method: 'POST',
+      body: formData,
+    })
+      .then(response => response.json())
+      .then(data => {
+        const imageUrl = data.secure_url;
+        console.log(imageUrl);
+        
+        localStorage.setItem("imgUrl", imageUrl);
+
+        const userData = JSON.parse(localStorage.getItem("userData"));
+        const owner = `${userData.firstName} ${userData.lastName}`;
+        storeImg(imageUrl, owner, docNum);
+      })
+      .catch(error => {
+        console.error('Image upload failed:', error);
+        alert('Image upload failed. Please check your internet connection.');
+      });
+  }
+
+  async function fetchUserInfo() {
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    if (!userData?.email) return;
+
+    try {
+      const response = await $.ajax({
+        type: "GET",
+        url: `https://wealt-render.onrender.com/users/${userData.email}`,
+        dataType: "json",
+        timeout: 30000
+      });
+
+      localStorage.setItem("userData", JSON.stringify(response.data));
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching user info:', error);
+    }
+  }
+
+  // --- Event Listeners ---
+  const imageInput = modal.querySelector('#image-upload');
+  const preview = modal.querySelector('#image-preview');
+  const cancelBtn = modal.querySelector('#cancelKYCBtn');
+  const uploadBtn = modal.querySelector('#upload-button');
+
+  // Preview selected image
+  imageInput.addEventListener('change', () => {
+    const file = imageInput.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = e => {
+        preview.src = e.target.result;
+        preview.style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // Cancel modal
+  cancelBtn.addEventListener('click', () => modal.remove());
+
+  // Upload KYC
+  uploadBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const file = imageInput.files[0];
+    const docNum = document.getElementById("documentNumber").value.trim();
+
+    if (!file) return alert('Please select an image.');
+    if (!docNum) return alert('Please enter your document number.');
+
+    uploadBtn.textContent = "Uploading...";
+    uploadBtn.disabled = true;
+
+    uploadToCloudinary(file, docNum);
+  });
+
+  // Fetch user info on modal open
+  await fetchUserInfo();
 }
 
 function renderInvestmentPage() {
