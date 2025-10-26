@@ -692,8 +692,8 @@ function renderDashboardPage() {
   // ✅ Delay widget loading slightly to ensure DOM exists
   setTimeout(() => {
     loadTickerTapeWidget();
-    loadTradingViewWidget("tv-widget-1", "NASDAQ:TSLA");
-    loadTradingViewWidget("tv-widget-2", "NASDAQ:NVDA");
+    loadTradingViewWidget2("tv-widget-1", "NASDAQ:TSLA");
+    loadTradingViewWidget2("tv-widget-2", "NASDAQ:NVDA");
   }, 150);
 }
 
@@ -729,7 +729,7 @@ function loadTickerTapeWidget() {
   container.appendChild(script);
 }
 
-function loadTradingViewWidget(containerId, symbol) {
+function loadTradingViewWidget2(containerId, symbol) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
