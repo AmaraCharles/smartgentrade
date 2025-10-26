@@ -544,7 +544,7 @@ function loadPage(page) {
       renderProfilePage();
       break;
     case 'investment':
-     renderInvestmentPlansPage();
+     renderInvestmentPage();
       break;
   
     case 'withdrawal':
