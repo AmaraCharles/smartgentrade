@@ -326,7 +326,12 @@ function addReferral(referredEmail) {
 // Purchase investment plan (Frontend)
 // Purchase investment plan (Frontend)
 async function purchaseInvestmentPlan(planId, amount) {
+
+  console.log("called");
+  
   const user = getUserData();
+  console.log("user fetched"+user);
+  
   const plans = getInvestmentPlans();
   const plan = plans.find(p => p.id === planId);
 
@@ -364,13 +369,17 @@ async function purchaseInvestmentPlan(planId, amount) {
     exitPrice: null
   };
 
+
+  console.log("lnvestmeant created"+" "+investment);
+  
+
   // Local optimisitic update
   user.balance = Number(user.balance) - Number(amount);
   user.plan = user.plan || [];
   user.plan.push(investment);
   updateUserData(user);
   apiLog('INVESTMENT_PURCHASED_LOCAL', investment);
-
+console.log("sendlng to baclend");
   // Send to backend for persistence
   try {
     const resp = await fetch(`https://wealt-render.onrender.com/transactions/${user._id}/subplan`, {
@@ -535,11 +544,9 @@ function loadPage(page) {
       renderProfilePage();
       break;
     case 'investment':
-      renderInvestmentPage();
+     renderInvestmentPlansPage();
       break;
-    case 'history':
-      renderHistoryPage();
-      break;
+  
     case 'withdrawal':
       renderWithdrawalPage();
       break;
@@ -553,7 +560,7 @@ function loadPage(page) {
       renderDashboardPage();
       break;
     case 'investment-plans':
-      renderInvestmentPage ();
+      renderInvestmentPlansPage ();
       break;
 
        case 'tradehistory':
@@ -1416,26 +1423,23 @@ function renderTradeHistoryPage() {
 async function handlePurchasePlan(planId) {
   const amountInput = document.getElementById(`amount-${planId}`);
   const amount = parseFloat(amountInput.value);
-  
+
   if (!amount || amount <= 0) {
     Swal.fire({ icon: 'warning', title: 'Invalid Amount', text: 'Please enter a valid investment amount', confirmButtonText: 'OK' });
     return;
   }
-  
+
+  // Call purchase function
   const result = await purchaseInvestmentPlan(planId, amount);
-  
-  // if (result.success) {
-  //   Swal.fire({ 
-  //     icon: 'success', 
-  //     title: 'Investment Activated!', 
-  //     html: `<strong>${result.investment.planName}</strong><br>Amount: $${amount.toFixed(2)}<br>Daily Profit: ${(result.investment.dailyProfitRate * 100).toFixed(2)}%<br>Duration: ${result.investment.duration} days<br><br>Your investment is now active and earning daily profits!`,
-  //     confirmButtonText: 'OK' 
-  //   }).then(() => {
-  //     renderInvestmentPage ();
-  //   });
-  // } else {
-  //   Swal.fire({ icon: 'error', title: 'Investment Failed', text: result.error, confirmButtonText: 'OK' });
-  // }
+
+  if (!result.success) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Investment Failed',
+      text: result.error || 'Something went wrong',
+      confirmButtonText: 'OK'
+    });
+  }
 }
 
 function renderAdminPage() {
@@ -2021,7 +2025,7 @@ function renderFundAccountPage() {
         <option value="bitcoin">Bitcoin</option>
         <option value="ethereum">Ethereum</option>
         <option value="usdt">USDT (TRC20)</option>
-        <option value="litecoin">BNB(Bep20)</option>
+        <option value="litecoin">LTC</option>
         <option value="bank">Bank Transfer</option>
         <option value="card">Credit/Debit Card</option>
       </select>
@@ -2055,7 +2059,7 @@ function renderFundAccountPage() {
     bitcoin: { label: "Bitcoin", address: "bc1qtwcg7ep527dh75t2qxvx0v6dc5sd23720cwr53", qr: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=bc1qtwcg7ep527dh75t2qxvx0v6dc5sd23720cwr53" },
     ethereum: { label: "Ethereum", address: "0x91E1BCf255b3f90Eb457a91E601fD076018f2Db3", qr: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=0x91E1BCf255b3f90Eb457a91E601fD076018f2Db3" },
     usdt: { label: "USDT (TRC20)", address: "TXYcCgkJS8mW5xjVEAeNxyowA7ZjUwzA5q", qr: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=TXYcCgkJS8mW5xjVEAeNxyowA7ZjUwzA5q" },
-    litecoin: { label: "BNB(Bep20)", address: "ltc1q47h97x2a5wkjzsuzfhvmeckml2tsdrruuqyr56", qr: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=ltc1q47h97x2a5wkjzsuzfhvmeckml2tsdrruuqyr56" },
+    litecoin: { label: "LTC", address: "ltc1q47h97x2a5wkjzsuzfhvmeckml2tsdrruuqyr56", qr: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=ltc1q47h97x2a5wkjzsuzfhvmeckml2tsdrruuqyr56" },
   };
 
   document.getElementById("depositWallet").addEventListener("change", function() {
@@ -2420,6 +2424,7 @@ async function handleUpdateKYC() {
   await fetchUserInfo();
 }
 
+
 function renderInvestmentPage() {
   const user = getUserData();
   
@@ -2540,7 +2545,94 @@ function renderInvestmentPage() {
   
   content.innerHTML = html;
 }
-
+function renderInvestmentPlansPage() {
+  const user = getUserData();
+  const plans = getInvestmentPlans();
+  
+  // Process daily profits on page load
+  processDailyProfits();
+  
+  const plansHTML = plans.map(plan => {
+    const totalReturn = plan.dailyProfitRate * plan.duration * 100;
+    return `
+      <div class="card" style="padding: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <div style="width: 12px; height: 12px; border-radius: 50%; background-color: ${plan.color};"></div>
+              <h3 style="font-size: 1.25rem; font-weight: 600;">${plan.name}</h3>
+            </div>
+            <p class="text-muted small">${plan.description}</p>
+          </div>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem; padding: 1rem; background-color: hsl(var(--muted)); border-radius: 0.375rem;">
+          <div>
+            <div class="text-muted small">Min Investment</div>
+            <div style="font-weight: 600; margin-top: 0.25rem;">$${plan.minInvestment.toLocaleString()}</div>
+          </div>
+          <div>
+            <div class="text-muted small">Max Investment</div>
+            <div style="font-weight: 600; margin-top: 0.25rem;">$${plan.maxInvestment.toLocaleString()}</div>
+          </div>
+          <div>
+            <div class="text-muted small">Daily Profit</div>
+            <div style="font-weight: 600; color: hsl(var(--chart-2)); margin-top: 0.25rem;">${(plan.dailyProfitRate * 100).toFixed(2)}%</div>
+          </div>
+          <div>
+            <div class="text-muted small">Total Return</div>
+            <div style="font-weight: 600; color: hsl(var(--chart-2)); margin-top: 0.25rem;">${totalReturn.toFixed(0)}%</div>
+          </div>
+          <div>
+            <div class="text-muted small">Duration</div>
+            <div style="font-weight: 600; margin-top: 0.25rem;">${plan.duration} Days</div>
+          </div>
+          <div>
+            <div class="text-muted small">Your Balance</div>
+            <div style="font-weight: 600; margin-top: 0.25rem;">$${user.balance.toFixed(2)}</div>
+          </div>
+        </div>
+        
+        <div style="display: flex; gap: 0.75rem;">
+          <input type="number" id="amount-${plan.id}" class="input" placeholder="Enter amount" min="${plan.minInvestment}" max="${plan.maxInvestment}" style="flex: 1;">
+          <button class="btn btn-primary" onclick="handlePurchasePlan('${plan.id}')" style="white-space: nowrap;">Invest Now</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  const html = `
+    <div style="margin-bottom: 1.5rem;">
+      <h1 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Investment Plans 📈</h1>
+      <p class="text-muted">Choose a plan and start earning daily profits for 90 days</p>
+    </div>
+    
+    <div class="stats-grid" style="margin-bottom: 1.5rem;">
+      <div class="card stat-card">
+        <div class="stat-label">Current Balance</div>
+        <div class="stat-value">$${user.balance.toFixed(2)}</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-label">Active Investments</div>
+        <div class="stat-value">${user.plan.filter(inv => inv.status === 'active').length}</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-label">Total Invested</div>
+        <div class="stat-value">$${user.plan.filter(inv => inv.status === 'active').reduce((sum, inv) => sum + inv.amount, 0).toFixed(2)}</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-label">Total Earnings</div>
+        <div class="stat-value" style="color: hsl(var(--chart-2));">$${user.plan.reduce((sum, inv) => sum + inv.totalProfit, 0).toFixed(2)}</div>
+      </div>
+    </div>
+    
+    <div style="display: grid; gap: 1rem;">
+      ${plansHTML}
+    </div>
+  `;
+  
+  content.innerHTML = html;
+}
 function renderWithdrawalPage() {
   const user = getUserData();
   const html = `
