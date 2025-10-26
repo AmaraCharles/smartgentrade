@@ -632,10 +632,12 @@ function renderDashboardPage() {
       <p class="text-muted">Welcome back, ${user.firstName} ${user.lastName}!</p>
     </div>
 
+    <!-- Ticker Tape -->
     <div class="card" style="padding: 0; margin-bottom: 1.5rem;">
       <div id="tradingview-ticker-tape"></div>
     </div>
 
+    <!-- Stats -->
     <div class="stats-grid">
       <div class="card stat-card">
         <div class="stat-label">Total Balance</div>
@@ -654,13 +656,21 @@ function renderDashboardPage() {
         <div class="stat-value">$${parseFloat(user.referalBonus || 0).toFixed(2)}</div>
       </div>
     </div>
+
+    <!-- ✅ TradingView Widgets -->
+    <div class="tv-widgets-container">
+      <div class="card tv-widget" id="tv-widget-1"></div>
+      <div class="card tv-widget" id="tv-widget-2"></div>
+    </div>
   `;
 
   const content = document.getElementById('content');
   content.innerHTML = html;
 
-  // ✅ Initialize TradingView Ticker AFTER HTML loads
+  // Initialize tradingview widgets
   loadTickerTapeWidget();
+  loadTradingViewWidget("tv-widget-1", "NASDAQ:TSLA");
+  loadTradingViewWidget("tv-widget-2", "NASDAQ:NVDA");
 }
 
 function loadTickerTapeWidget() {
@@ -694,6 +704,32 @@ function loadTickerTapeWidget() {
   script.innerHTML = JSON.stringify(config);
   container.appendChild(script);
 }
+
+function loadTradingViewWidget(containerId, symbol) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  const script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js';
+  script.async = true;
+
+  const config = {
+    symbol: symbol,
+    width: "100%",
+    height: 350,
+    locale: "en",
+    dateRange: "12M",
+    colorTheme: document.documentElement.classList.contains('dark') ? "dark" : "light",
+    trendLineColor: "#37a2eb",
+    underLineColor: "rgba(55, 162, 235, 0.1)",
+    isTransparent: true
+  };
+
+  script.innerHTML = JSON.stringify(config);
+  container.appendChild(script);
+}
+
  function renderTradePage() {
   const content = document.getElementById('content');
   const user = getUserData(); // however you retrieve user info

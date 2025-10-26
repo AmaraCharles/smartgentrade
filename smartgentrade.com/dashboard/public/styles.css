@@ -1255,6 +1255,20 @@ tbody tr:hover {
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
+.tv-widgets-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.tv-widget {
+  flex: 1;
+  min-width: 320px;
+  height: 380px;
+  padding: 0;
+}
+
 /* ========= ANIMATIONS ========= */
 @keyframes fadeUp {
   0% { opacity: 0; transform: translateY(40px); }
