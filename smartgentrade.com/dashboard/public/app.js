@@ -578,10 +578,11 @@ function loadPage(page) {
       renderRewardsPage();
       break;
     case 'dashboard':
-renderInvestmentPlansPage      renderDashboardPage();
+ 
+   renderDashboardPage();
       break;
     case 'investment-plans':
-       ();
+     renderInvestmentPlansPage(); 
       break;
 
        case 'tradehistory':
