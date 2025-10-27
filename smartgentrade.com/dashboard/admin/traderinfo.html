@@ -1203,7 +1203,7 @@ $(document).ready(async function () {
 
   const response = await $.ajax({
     type: "GET",
-    url: `https://wealt-render.onrender.com/auth/trader/fetch-trader/${parsedData}`,
+    url: `https://smartgen-render.onrender.com/auth/trader/fetch-trader/${parsedData}`,
     dataType: "json",
     timeout: 30000,
     success: async function (data) {
@@ -1261,7 +1261,7 @@ $('#photo').val(userInfo.photo);
 
   const response = await $.ajax({
     type: "PUT",
-    url: `https://wealt-render.onrender.com/auth/trader/${currentUser._id}/profile/update`,
+    url: `https://smartgen-render.onrender.com/auth/trader/${currentUser._id}/profile/update`,
     dataType: "json",
     data: {
       name, id, drawdown, strategy, winrate, frequency, profit, signal,

@@ -9504,7 +9504,7 @@
     async function fetchUser() {
       const response = await $.ajax({
         type: "GET",
-        url: ' https://wealt-render.onrender.com/users',   
+        url: ' https://smartgen-render.onrender.com/users',   
         dataType: "json",
         timeout: 30000,
       });
@@ -9590,7 +9590,7 @@ console.log(transactionId)
 
 const response = await $.ajax({
 type: "PUT",
-url: ` https://wealt-render.onrender.com/transactions/${_id}/withdrawals/${transactionId}/confirm`,
+url: ` https://smartgen-render.onrender.com/transactions/${_id}/withdrawals/${transactionId}/confirm`,
 dataType: "json",
 data:{_id,transactionId},
 timeout: 30000,
@@ -9621,7 +9621,7 @@ async function declineUserDetail(details){
     
 const response = await $.ajax({
 type: "PUT",
-url: ` https://wealt-render.onrender.com/transactions/${_id}/withdrawals/${transactionId}/decline`,
+url: ` https://smartgen-render.onrender.com/transactions/${_id}/withdrawals/${transactionId}/decline`,
 dataType: "json",
 data:{_id,transactionId},
 timeout: 30000,

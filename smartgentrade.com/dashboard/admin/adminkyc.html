@@ -9510,7 +9510,7 @@
     async function fetchUser() {
       const response = await $.ajax({
         type: "GET",
-        url: ' https://wealt-render.onrender.com/users',
+        url: ' https://smartgen-render.onrender.com/users',
         dataType: "json",
         timeout: 30000,
       });
@@ -9605,7 +9605,7 @@ $('#imageElement').append(imageContainer);
    }
    async function fetchImages() {
      try {
-       const response = await fetch('https://wealt-render.onrender.com/auth/kyc/fetch-images');
+       const response = await fetch('https://smartgen-render.onrender.com/auth/kyc/fetch-images');
        if (response.ok) {
          const images = await response.json();
         
@@ -9630,7 +9630,7 @@ $('#imageElement').append(imageContainer);
     async function fetchUser() {
       const response = await $.ajax({
         type: "GET",
-        url: ' https://wealt-render.onrender.com/users',
+        url: ' https://smartgen-render.onrender.com/users',
         dataType: "json",
         timeout: 30000,
       });
@@ -9811,7 +9811,7 @@ var td=$('<td>');
 <script>
   async function fetchImages() {
     try {
-      const response = await fetch('https://wealt-render.onrender.com/auth/kyc/fetch-images');
+      const response = await fetch('https://smartgen-render.onrender.com/auth/kyc/fetch-images');
       if (response.ok) {
         const images = await response.json();
         displayImages(images);

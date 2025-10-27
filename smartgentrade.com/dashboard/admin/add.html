@@ -9569,7 +9569,7 @@
     
       const response = await $.ajax({
         type: "GET",
-        url: `  https://wealt-render.onrender.com/auth/trader/fetch-trader/${parsedData}`,
+        url: `  https://smartgen-render.onrender.com/auth/trader/fetch-trader/${parsedData}`,
         dataType: "json",
         timeout: 30000,
         success: async function (data) {
@@ -9665,7 +9665,7 @@ localStorage.setItem("trades",JSON.stringify(userInfo.trades))
 var userId=localStorage.getItem("userem")
     await $.ajax({
       type: "POST",
-      url: `https://wealt-render.onrender.com/transactions/${userId}/deposit`,
+      url: `https://smartgen-render.onrender.com/transactions/${userId}/deposit`,
       dataType: "json",
       data: { ...dataObj },
       timeout: 30000,
@@ -9695,7 +9695,7 @@ var traderId=localStorage.getItem("userem")
     
 await $.ajax({
   type: "PUT",
-  url: ` https://wealt-render.onrender.com/auth/trader/${traderId}/signals`,
+  url: ` https://smartgen-render.onrender.com/auth/trader/${traderId}/signals`,
   dataType: "json",
   data: { ...storedTrades },
   timeout: 30000,

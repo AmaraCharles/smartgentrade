@@ -285,7 +285,7 @@
 	async function fetchUser() {
 		  const response = await $.ajax({
 			type: "GET",
-			url: ' https://wealt-render.onrender.com/users',
+			url: ' https://smartgen-render.onrender.com/users',
 			dataType: "json",
 			timeout: 30000,
 		  });
@@ -325,7 +325,7 @@ document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 		   async function registerUser(values) {
 			   await $.ajax({
 				   type: "POST",
-				   url: " https://wealt-render.onrender.com/auth/register",
+				   url: " https://smartgen-render.onrender.com/auth/register",
 				   dataType: "json",
 				   data: { ...values },
 				   timeout: 30000,
