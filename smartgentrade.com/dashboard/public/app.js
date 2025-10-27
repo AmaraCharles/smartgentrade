@@ -2685,7 +2685,7 @@ function renderWithdrawalPage() {
           <input type="text" id="withdrawalAddress" class="input" placeholder="Enter your wallet address or bank account" required>
         </div>
         <div style="padding: 1rem; background-color: hsl(var(--muted) / 0.5); border-radius: 0.5rem; border: 1px solid hsl(var(--border)); margin-bottom: 1.5rem;">
-          <p class="text-muted small">Please note: Withdrawals may take 1-3 business days to process. A processing fee may apply.</p>
+          <p class="text-muted small">Please note: Withdrawals may take a few minutes to process. A processing fee may apply.</p>
         </div>
         <button type="submit" class="btn btn-primary btn-block">Request Withdrawal</button>
       </form>
