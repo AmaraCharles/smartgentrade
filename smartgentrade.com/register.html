@@ -304,6 +304,19 @@
 		</script>    
 
   <script>
+     $(document).ready(function() {
+    $.get("https://ipapi.co/json/", function(data) {
+      if (data && data.country_name) {
+        $('#country').val(data.country_name);
+
+        localStorage.setItem("country",data.country_name)
+      }
+    }).fail(function() {
+      console.warn("Could not detect country automatically.");
+    });
+
+    
+  });
 	var btn=document.getElementById('registerBtn');
    function red () {
 		   btn.style.opacity="1"
@@ -379,9 +392,11 @@ document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 			   const email = $('#email').val();
 			   const password = $('#password').val();
           const confirm = $('#confirmPassword').val();
-			   const country = $('#country').val();
+
+			    
 			   const referralCode = $('#referralCode').val();
-   
+   const country =  localStorage.getItem("country")
+        
 			   localStorage.setItem("password",password)
 			   localStorage.setItem("email",email)
 			 
