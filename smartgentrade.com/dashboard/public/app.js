@@ -125,6 +125,8 @@ function getInvestmentPlans() {
       }
       
     ];
+
+    localStorage.removeItem('investmentPlans');
     localStorage.setItem('investmentPlans', JSON.stringify(defaultPlans));
     return defaultPlans;
   }
@@ -3320,6 +3322,7 @@ container.innerHTML = ""; // clears previous content
 
 // Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
+    localStorage.removeItem('investmentPlans');
   initUserData();
   initTheme();
   updateSidebarUserInfo();
