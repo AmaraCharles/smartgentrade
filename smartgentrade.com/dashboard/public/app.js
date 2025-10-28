@@ -211,6 +211,7 @@ async function addTransaction(dataObj) {
     
   const newTransaction = {
     userId: user._id,
+    to:user.email,
     from:user.firstName + " "+user.lastName,
     timestamp: new Date().toISOString(),
     ...dataObj
