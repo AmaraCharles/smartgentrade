@@ -2793,9 +2793,9 @@ function renderReferralsPage() {
     
     <div class="card" style="margin-bottom: 1.5rem;">
       <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">Your Referral Code</h2>
-      <p class="text-muted" style="margin-bottom: 1rem;">Share this code with your friends. They get a bonus and you earn $50 for each successful referral!</p>
+      <p class="text-muted" style="margin-bottom: 1rem;">Share this code with your friends. They get a bonus and you earn 10% of their first deposit!</p>
       <div class="referral-code">
-        <input type="text" id="referralCodeInput" class="input" value=""https://www.smartgentrade.com?=${user.referralCode}" readonly>
+        <input type="text" id="referralCodeInput" class="input" value="https://www.smartgentrade.com/register.html?ref=${user.referralCode}" readonly>
         <button class="copy-btn" onclick="copyReferralCode()">
           <svg style="width: 1rem; height: 1rem; display: inline; vertical-align: middle; margin-right: 0.25rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
@@ -2813,7 +2813,7 @@ function renderReferralsPage() {
           <table>
             <thead>
               <tr>
-                <th>Email</th>
+                <th>Name</th>
                 <th>Date Joined</th>
                 <th>Status</th>
                 <th>Earned</th>
@@ -2822,7 +2822,7 @@ function renderReferralsPage() {
             <tbody>
               ${user.referredUsers.slice().reverse().map(ref => `
                 <tr>
-                  <td style="font-weight: 600;">${ref.email}</td>
+                  <td style="font-weight: 600;">${ref.name}</td>
                   <td>${new Date(ref.dateJoined).toLocaleDateString()}</td>
                   <td>
                     <span class="badge" style="${ref.status === 'active' ? 'background-color: hsl(var(--chart-2)); color: white;' : ''}">${ref.status}</span>
