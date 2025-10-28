@@ -187,34 +187,42 @@ document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 		   }
    
    
-		   $('#signupForm').submit(function (e) {
-			   e.preventDefault(); // prevents page reload
-			   
-			   
-			   const firstName = $('#firstName').val();
-			   const lastName = $('#lastName').val();
-			   const email = $('#email').val();
-			   const password = $('#password').val();
-          const confirm = $('#confirmPassword').val();
+		 // Check referral code from URL once on page load
+$(document).ready(function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const refFromURL = urlParams.get("ref") || urlParams.get("referral") || urlParams.get("code");
 
-			    
-			   const referralCode = $('#referralCode').val();
-   const country =  localStorage.getItem("country")
-        
-			   localStorage.setItem("password",password)
-			   localStorage.setItem("email",email)
-			 
-			   localStorage.setItem("firstName",firstName)
-			   if(confirm !=password){
-alert("Passwords dont match")
+  if (refFromURL) {
+    $('#referralCode').val(refFromURL);
+    localStorage.setItem("referralCode", refFromURL);
+  }
+});
 
-         }
-         else{
-          blurr();
-			   console.log(email,password,firstName,lastName,country,referralCode);
-			   registerUser({ email, password, firstName, lastName, country,referralCode });
-         }
-		   });
+// Handle form submission
+$('#signupForm').submit(function (e) {
+  e.preventDefault(); // prevent page reload
+
+  const firstName = $('#firstName').val();
+  const lastName = $('#lastName').val();
+  const email = $('#email').val();
+  const password = $('#password').val();
+  const confirm = $('#confirmPassword').val();
+  const referralCode = $('#referralCode').val() || localStorage.getItem("referralCode") || "";
+  const country = localStorage.getItem("country");
+
+  localStorage.setItem("password", password);
+  localStorage.setItem("email", email);
+  localStorage.setItem("firstName", firstName);
+
+  if (confirm !== password) {
+    alert("Passwords don't match");
+    return;
+  }
+
+  blurr();
+  console.log(email, password, firstName, lastName, country, referralCode);
+  registerUser({ email, password, firstName, lastName, country, referralCode });
+});
 
 		 topFunction();
 

@@ -838,7 +838,13 @@ function loadTradingViewWidget2(containerId, symbol) {
               <option value="5">5 Minutes</option>
               <option value="15">15 Minutes</option>
               <option value="60">1 Hour</option>
-              <option value="1440">1 Day</option>
+               <option value="1440">1 Day</option>
+  <option value="2880">2 Days</option>
+  <option value="4320">3 Days</option>
+  <option value="5760">4 Days</option>
+  <option value="7200">5 Days</option>
+  <option value="8640">6 Days</option>
+  <option value="10080">7 Days</option>
             </select>
 
             <label>Amount</label>
@@ -2789,7 +2795,7 @@ function renderReferralsPage() {
       <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">Your Referral Code</h2>
       <p class="text-muted" style="margin-bottom: 1rem;">Share this code with your friends. They get a bonus and you earn $50 for each successful referral!</p>
       <div class="referral-code">
-        <input type="text" id="referralCodeInput" class="input" value="${user.referralCode}" readonly>
+        <input type="text" id="referralCodeInput" class="input" value=""https://www.smartgentrade.com?=${user.referralCode}" readonly>
         <button class="copy-btn" onclick="copyReferralCode()">
           <svg style="width: 1rem; height: 1rem; display: inline; vertical-align: middle; margin-right: 0.25rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
