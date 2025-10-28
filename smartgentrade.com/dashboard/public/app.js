@@ -69,7 +69,7 @@ function getInvestmentPlans() {
         minInvestment: 57,
         maxInvestment: 3900,
         dailyProfitRate: 0.05, // 2% daily
-        duration: 90, // days
+        duration: 1, // days
         description: 'Perfect for beginners looking to start their investment journey',
         color: 'hsl(30, 60%, 50%)'
       },
@@ -79,7 +79,7 @@ function getInvestmentPlans() {
         minInvestment: 4000,
         maxInvestment: 9850,
         dailyProfitRate: 0.10, // 3.5% daily
-        duration: 90,
+        duration: 1,
         description: 'Balanced plan for steady growth and reliable returns',
         color: 'hsl(0, 0%, 70%)'
       },
@@ -88,8 +88,8 @@ function getInvestmentPlans() {
         name: 'Gold Plan',
         minInvestment: 15000,
         maxInvestment: 26000,
-        dailyProfitRate: 0.15, // 5% daily
-        duration: 90,
+        dailyProfitRate: 0.075, // 5% daily
+        duration: 2,
         description: 'Premium plan with high returns for serious investors',
         color: 'hsl(45, 100%, 50%)'
       },
@@ -98,8 +98,8 @@ function getInvestmentPlans() {
         name: 'Diamond Plan',
         minInvestment: 20000,
         maxInvestment: 31000,
-        dailyProfitRate: 0.25, // 7.5% daily
-        duration: 90,
+        dailyProfitRate: 0.083, // 7.5% daily
+        duration: 3,
         description: 'Elite plan for maximum profit and exclusive benefits',
         color: 'hsl(195, 70%, 60%)'
       },
@@ -108,8 +108,8 @@ function getInvestmentPlans() {
         name: 'Ultimate Plan',
         minInvestment: 20000,
         maxInvestment: 52000,
-        dailyProfitRate: 0.35, // 7.5% daily
-        duration: 90,
+        dailyProfitRate: 0.087, // 7.5% daily
+        duration: 4,
         description: 'Elite plan for maximum profit and exclusive benefits',
         color: 'hsl(195, 70%, 60%)'
       },
@@ -118,8 +118,8 @@ function getInvestmentPlans() {
         name: 'Master Plan',
         minInvestment: 50000,
         maxInvestment: 100000,
-        dailyProfitRate: 0.45, // 7.5% daily
-        duration: 90,
+        dailyProfitRate: 0.064, // 7.5% daily
+        duration: 7,
         description: 'Elite plan for maximum profit and exclusive benefits',
         color: 'hsl(195, 70%, 60%)'
       }
