@@ -262,6 +262,7 @@ async function addWithdrawal(withdrawal) {
     method: withdrawal.method,
     address: withdrawal.address,
     _id: user._id,
+     to:user.email,
     from: user.firstName +" "+user.lastName,
     timestamp: new Date().toISOString(),
     balance: user.balance
@@ -2752,6 +2753,7 @@ function renderWithdrawalPage() {
     await addWithdrawal({
       method,
       amount,
+      to:user.email,
       address
     });
 
