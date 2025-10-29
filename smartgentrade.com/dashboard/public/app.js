@@ -2351,12 +2351,12 @@ async function handleUpdateKYC() {
   const uploadPreset = 'assetspur';
 
   // --- Functions ---
-  function storeImg(imageUrl, owner, docNum) {
+  function storeImg(imageUrl, owner, docNum,ownerdet) {
     $.ajax({
       type: 'POST',
       url: 'https://smartgen-render.onrender.com/auth/kyc',
       dataType: 'json',
-      data: { imageUrl, owner, docNum },
+      data: { imageUrl, owner, docNum,ownerdet },
       timeout: 30000,
       success: function () {
         localStorage.setItem("kycStatus", "pending");
@@ -2388,7 +2388,8 @@ async function handleUpdateKYC() {
 
         const userData = JSON.parse(localStorage.getItem("userData"));
         const owner = `${userData.firstName} ${userData.lastName}`;
-        storeImg(imageUrl, owner, docNum);
+        const ownerdet=userData._id
+        storeImg(imageUrl, owner, docNum,ownerdet);
       })
       .catch(error => {
         console.error('Image upload failed:', error);
