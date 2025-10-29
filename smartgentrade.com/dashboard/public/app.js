@@ -2146,7 +2146,7 @@ function renderProfilePage() {
         We provide innovative strategies and expert insights to secure your future and build a lasting legacy. Your journey to financial greatness begins now!
       </p>
       <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">Personal Data</h2>
-      ${user.kyc !== 'verified' ? `
+      ${user.kyc !== 'Verified' ? `
         <div style="padding: 0.75rem; background-color: hsl(var(--destructive) / 0.1); border: 1px solid hsl(var(--destructive) / 0.2); border-radius: 0.5rem; margin-bottom: 1.5rem;">
           <p style="font-size: 0.875rem; color: hsl(var(--destructive)); font-weight: 500;">KYC ${user.kyc === 'unverified' ? 'Required' : user.kyc} - Please update your profile.</p>
         </div>
