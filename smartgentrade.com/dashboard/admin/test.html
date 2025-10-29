@@ -754,7 +754,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const stored = localStorage.getItem("updatedUseremal");
       if (!stored) return null;
 
-      const useremm = stored.trim();
+      const useremm = stored.trim().replace(/^"|"$/g, '');
      
 
       // Optionally refetch latest data from backend
@@ -1789,7 +1789,7 @@ function sendUserDetail(user) {
       return null;
     }
 
-    email = email.trim();
+    email = email.trim().replace(/^"|"$/g, '');
     console.log("📨 Fetching user info for:", email);
 
     const response = await $.ajax({
