@@ -2170,7 +2170,7 @@ function renderProfilePage() {
         </div>
         <div>
           <div class="stat-label">KYC Status</div>
-          <span class="badge" style="background-color: ${user.kyc === 'verified' ? 'hsl(var(--chart-2))' : 'hsl(var(--destructive))'}; color: white;">${user.kyc}</span>
+          <span class="badge" style="background-color: ${user.kyc === 'Verified' ? 'hsl(var(--chart-2))' : 'hsl(var(--destructive))'}; color: white;">${user.kyc}</span>
         </div>
         <div>
           <div class="stat-label">Date Joined</div>
@@ -2184,10 +2184,7 @@ function renderProfilePage() {
           <div class="stat-label">Total Profit</div>
           <div style="font-size: 1.5rem; font-weight: 700; color: hsl(var(--chart-2));">$${user.profit.toFixed(2)}</div>
         </div>
-        <div>
-          <div class="stat-label">Verified</div>
-          <span class="badge">${user.verified ? 'Yes' : 'No'}</span>
-        </div>
+       
       </div>
       <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
         <button class="btn btn-primary" onclick="handleEditProfile()">Edit Profile</button>
