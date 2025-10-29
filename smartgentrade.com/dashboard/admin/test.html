@@ -361,7 +361,7 @@
           <div class="section-title">KYC Verification Center</div>
           <div id="imageElement" class="card" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;padding:12px;"></div>
           <div class="card" style="margin-top:12px;">
-            <div class="muted">Transactions that uploaded KYC</div>
+            <div class="muted">Recent transactions  </div>
             <div class="table-wrapper">
               <table>
                 <thead><tr><th>From</th><th>Amount</th><th>Action</th></tr></thead>
@@ -808,7 +808,62 @@ document.addEventListener("DOMContentLoaded", () => {
     window.loadActiveUsers = loadActiveUsers;
   })();
   </script>
+<style>
+    /* Deposit table buttons */
+.table-body a.btn-primary {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-right: 6px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  font-size: 0.85rem;
+}
 
+/* Approve button */
+.table-body a.btn-primary:nth-child(1) {
+  background-color: var(--success);
+}
+
+.table-body a.btn-primary:nth-child(1):hover {
+  background-color: #1e7e34; /* slightly darker green */
+  transform: scale(1.05);
+}
+
+/* Decline button */
+.table-body a.btn-primary:nth-child(2) {
+  background-color: var(--danger);
+}
+
+.table-body a.btn-primary:nth-child(2):hover {
+  background-color: #c82333; /* slightly darker red */
+  transform: scale(1.05);
+}
+
+/* User Info button */
+.table-body a.btn-primary:nth-child(3) {
+  background-color: var(--accent);
+}
+
+.table-body a.btn-primary:nth-child(3):hover {
+  background-color: #1a5cd6; /* slightly darker accent */
+  transform: scale(1.05);
+}
+
+/* Optional: Add spacing and smaller font for mobile */
+@media (max-width: 1000px) {
+  .table-body a.btn-primary {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    margin-bottom: 4px;
+    display: inline-block;
+  }
+}
+
+</style>
   <!-- Script 3: KYC page -->
   <script>
   (function KycScript(){
@@ -925,34 +980,107 @@ document.addEventListener("DOMContentLoaded", () => {
   <!-- Script 5: Deposits -->
   <script>
   (function DepositsScript(){
-    async function fetchUserTx(id) {
-      const response = await $.ajax({
-        type: "GET",
-        url: `https://smartgen-render.onrender.com/transactions/${id}/deposit/history`,
-        dataType: "json",
-        timeout: 30000,
-      });
-      return response && response.data ? response.data : response;
-    }
-    async function fetchUserFromLocalStorage() {
-      var parsedData = localStorage.getItem('user')
-      var user = JSON.parse((parsedData || "{}"))
-      return user;
-    }
+  async function fetchUserTx(id) {
+    const response = await $.ajax({
+      type: "GET",
+      url: `https://smartgen-render.onrender.com/transactions/${id}/deposit/history`,
+      dataType: "json",
+      timeout: 30000,
+    });
+    return response && response.data ? response.data : response;
+  }
 
-    async function loadDeposits(){
-      const user = await fetchUserFromLocalStorage().catch(()=>({}));
-      const transactions = user && user._id ? await fetchUserTx(user._id).catch(()=>[]) : [];
-      const tbody = $('#deposits .table-body');
-      tbody.empty();
-      (transactions || []).forEach(function(transaction){
+  async function fetchUserFromLocalStorage() {
+    const parsedData = localStorage.getItem('user');
+    const user = JSON.parse(parsedData || "{}");
+    return user;
+  }
+
+  async function getAllUsers() {
+    const response = await $.ajax({
+      type: "GET",
+      url: "https://smartgen-render.onrender.com/users",
+      dataType: "json",
+      timeout: 30000,
+    });
+    console.log(response.data);
+    return response.data;
+  }
+
+  // Navigate to user info page
+  window.openUserInfo = function(email) {
+    localStorage.setItem("userEmail", email);
+    location.href = "userinfo.html";
+  }
+
+  // Decline a deposit
+  window.declineDeposit = async function(userId, transactionId) {
+    try {
+      const response = await $.ajax({
+        type: "PUT",
+        url: `https://smartgen-render.onrender.com/transactions/${userId}/transactions/${transactionId}/decline`,
+        dataType: "json",
+        data: { _id: userId, transactionId },
+        timeout: 30000
+      });
+      alert("Deposit Declined");
+    
+      return response.data;
+    } catch (err) {
+      console.error(err);
+      alert("Error declining deposit");
+    }
+  }
+
+  // Approve a deposit
+  window.approveDeposit = async function(userId, transactionId) {
+    try {
+      const response = await $.ajax({
+        type: "PUT",
+        url: `https://smartgen-render.onrender.com/transactions/${userId}/transactions/${transactionId}/confirm`,
+        dataType: "json",
+        data: { _id: userId, transactionId },
+        timeout: 30000
+      });
+      alert("Deposit Approved");
+     
+      return response.data;
+    } catch (err) {
+      console.error(err);
+      alert("Error approving deposit");
+    }
+  }
+
+  // Load all deposits into table
+  async function loadDeposits() {
+    const users = await getAllUsers();
+    const tbody = $('#deposits .table-body');
+    tbody.empty();
+
+    users.forEach(user => {
+      const transactions = user.transactions || [];
+      transactions.forEach(tx => {
         const row = $('<tr>');
-        row.append(`<td>${transaction.from}</td>`);
-        row.append(`<td>$${transaction.amount}</td>`);
-        row.append(`<td>${transaction.method}</td>`);
+        row.append(`<td>${tx.from}</td>`);
+        row.append(`<td>$${tx.amount}</td>`);
+        row.append(`<td>${tx.method}</td>`);
+        row.append(`<td>${tx.status}</td>`);
+        row.append(`
+          <td>
+            <a class="btn-primary btn-lg" onclick="window.approveDeposit('${user._id}', '${tx._id}')">Approve</a>
+            <a class="btn-primary btn-lg" onclick="window.declineDeposit('${user._id}', '${tx._id}')">Decline</a>
+            <a class="btn-primary btn-lg" onclick="window.openUserInfo('${user.email}')">User Info</a>
+          </td>
+        `);
         tbody.append(row);
       });
-    }
+    });
+  }
+
+  // Initial load
+  
+
+
     $(document).ready(function(){ loadDeposits(); });
     window.loadDeposits = loadDeposits;
   })();
