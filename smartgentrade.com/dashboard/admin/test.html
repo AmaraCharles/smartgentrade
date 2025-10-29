@@ -106,7 +106,7 @@
     table thead th { text-align:left; padding:10px; color:var(--muted); font-weight:600; }
     table tbody td { padding:10px; border-bottom:1px solid rgba(0,0,0,0.04); }
 
-    .table-wrapper { overflow:auto; max-height:520px; }
+    .table-wrapper { overflow-x: auto; max-height: 520px; width: 100%; -webkit-overflow-scrolling: touch; }
 
     .badge { padding:6px 10px; border-radius:999px; font-weight:600; font-size:12px; display:inline-block; }
     .badge.green { background: rgba(40,167,69,0.12); color:var(--success); }
@@ -115,14 +115,25 @@
 
     /* Small screens */
     @media (max-width:1000px) {
-      .grid { grid-template-columns: repeat(2, 1fr); }
-      /* .sidebar { display:none; } */
-      /* ✅ Ensure sidebar can transition smoothly instead of being display:none */
-.sidebar {
-  display: flex !important;
-}
-
-      .app { padding:0; }
+      .app { padding: 8px; flex-direction: column; }
+      
+      .content { width: 100%; padding: 0; }
+      
+      .main-area { padding: 8px; }
+      
+      .grid { grid-template-columns: 1fr; }
+      
+      .form-row { flex-direction: column; }
+      
+      .input { width: 100%; }
+      
+      table { min-width: 100%; font-size: 13px; }
+      
+      .table-wrapper { margin: 0 -8px; padding: 0 8px; }
+      
+      .action-group { flex-wrap: wrap; }
+      
+      .sidebar { display: flex !important; }
     }
 
     /* compact helpers */
@@ -1014,8 +1025,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Navigate to user info page
   window.openUserInfo = function(email) {
-    localStorage.setItem("userEmail", email);
-    location.href = "userinfo.html";
+    localStorage.setItem("userem", email);
+    showSection('edit-user');
+    fetchUserInfo_local().then(() => {
+      populateEditUserForm();
+    });
   }
 
   // Decline a deposit
@@ -1723,6 +1737,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   <!-- Hook navigation to load view-specific data when user navigates -->
   <script>
+    async function fetchUserInfo_local() {
+      const email = localStorage.getItem('userem');
+      if (!email) return null;
+      try {
+        const response = await $.ajax({
+          type: "GET",
+          url: `https://smartgen-render.onrender.com/users/${email}`,
+          dataType: "json",
+          timeout: 30000
+        });
+        return response && response.data ? response.data : response;
+      } catch (error) {
+        console.error('Error fetching user info:', error);
+        return null;
+      }
+    }
+
+    function populateEditUserForm() {
+      fetchUserInfo_local().then(userInfo => {
+        if (!userInfo) return;
+        $('#name_edit').val(userInfo.firstName + ' ' + userInfo.lastName);
+        $('#level_edit').val(userInfo.level || '');
+        $('#rating_edit').val(userInfo.rating || '');
+        $('#commission_edit').val(userInfo.commission || '');
+        $('#pnl_edit').val(userInfo.pnl || '');
+        $('#profileId_edit').val(userInfo.profileId || '');
+        $('#followers_edit').val(userInfo.followers || '');
+        $('#watchers_edit').val(userInfo.watchers || '');
+      });
+    }
+
     // call loads for each section on nav change (so data refreshes)
    document.querySelectorAll('#mainNav a').forEach(a => {
   a.addEventListener('click', e => {
