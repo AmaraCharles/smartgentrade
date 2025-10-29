@@ -732,6 +732,9 @@ document.addEventListener("DOMContentLoaded", () => {
   <!-- Script 2: Active users -->
   <script>
   (function ActiveUsersScript(){
+
+    const BASE_URL = "https://smartgen-render.onrender.com";
+    
     async function fetchUser() {
           const response = await $.ajax({
             type: "GET",
@@ -743,28 +746,40 @@ document.addEventListener("DOMContentLoaded", () => {
           return data;
     }
 
-     async function fetchUserInfo_local() {
-      var parsedData = localStorage.getItem('userem');
+    async function fetchUserInfo_local() {
+    try {
+      const stored = localStorage.getItem("updatedUseremal");
+      if (!stored) return null;
+
+      const useremm = stored.trim();
+     
+
+      // Optionally refetch latest data from backend
       const response = await $.ajax({
         type: "GET",
-        url: `https://smartgen-render.onrender.com/users/${parsedData}`,
+        url: `${BASE_URL}/users/${useremm}`,
         dataType: "json",
         timeout: 30000,
-        success: async function (data) {
-          Object.assign(currentUser, data.data || {});
-        },
-        error: function () { /* ignore */ }
       });
-      return response && response.data ? response.data : response;
-    }
 
-    function sendUserDetail(userem){
-      localStorage.setItem("userem",userem);
-      // show user info section
-      fetchUserInfo_local()
-      showSection('edit-user');
-      // call that page's fetch to populate fields (it will run on script load too)
+      const data = response && response.data ? response.data : response;
+      localStorage.setItem("updatedUser", JSON.stringify(data)); // keep latest
+
+      
+      return data;
+    } catch (err) {
+      console.error("Error in fetchUserInfo_local:", err);
+      return null;
     }
+  }
+
+  function sendEdUserDetail(user) {
+  localStorage.setItem("updatedUseremal", JSON.stringify(user));
+  showSection('edit-user');
+
+  // ensure correct user loads immediately
+  setTimeout(() => window.populateEditUserForm && window.populateEditUserForm(), 200);
+}
     function pushUserDetail(userem){
       localStorage.setItem("userem",userem);
       // open copy history area (we don't have a dedicated view, open deposits)
@@ -791,7 +806,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // expose for onclick from DOM
-    window.sendUserDetail = sendUserDetail;
+    window.sendEdUserDetail = sendEdUserDetail;
     window.pushUserDetail = pushUserDetail;
     window.deleteUser = deleteUser;
 
@@ -805,7 +820,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <td>${user.firstName || ''}</td>
           <td>$${user.balance || 0}</td>
           <td>$${user.profit || 0}</td>
-          <td><button class="table-btn primary" onclick="sendUserDetail('${user.email}')">View</button></td>
+          <td><button class="table-btn primary" onclick="sendEdUserDetail('${user.email}')">View</button></td>
           <td><button class="table-btn primary" onclick="pushUserDetail('${user.email}')">Copy</button></td>
           <td><button class="table-btn danger" onclick="deleteUser('${user.email}')">Delete</button></td>
         `;
@@ -1577,36 +1592,65 @@ document.addEventListener("DOMContentLoaded", () => {
 
     var currentUser = {};
 
-    async function fetchUserInfo_local() {
-      var parsedData = localStorage.getItem('userem');
-      const response = await $.ajax({
-        type: "GET",
-        url: `https://smartgen-render.onrender.com/users/${parsedData}`,
-        dataType: "json",
-        timeout: 30000,
-        success: async function (data) {
-          Object.assign(currentUser, data.data || {});
-        },
-        error: function () { /* ignore */ }
-      });
-      return response && response.data ? response.data : response;
+   async function fetchUserInfo_local() {
+  try {
+    let email = localStorage.getItem("updatedUseremal");
+    if (!email) {
+      console.warn("⚠️ No updatedUseremal found in localStorage");
+      return null;
     }
 
-    async function populateEditUserForm(){
+    email = email.trim();
+    console.log("📨 Fetching user info for:", email);
+
+    const response = await $.ajax({
+      type: "GET",
+      url: `${BASE_URL}/users/${email}`, // ✅ encode email for safe URL
+      dataType: "json",
+      timeout: 30000,
+    });
+
+    const data = response?.data || response;
+    localStorage.setItem("updatedUser", JSON.stringify(data));
+    console.log("✅ Updated user saved:", data);
+    return data;
+
+  } catch (err) {
+    // Better debug info
+    if (err.responseJSON) {
+      console.error("❌ Server error:", err.responseJSON);
+    } else if (err.statusText) {
+      console.error(`❌ Request failed: ${err.status} ${err.statusText}`);
+    } else {
+      console.error("❌ Unknown fetch error:", err);
+    }
+    return null;
+  }
+}
+
+
+
+     async function populateEditUserForm() {
+    try {
       const userInfo = await fetchUserInfo_local();
-      if (!userInfo) return;
-      $('#firstName').val(userInfo.firstName);
-      $('#lastName').val(userInfo.lastName);
-      $('#_id').val(userInfo._id);
-      $('#kyc').val(userInfo.kyc);
-      $('#email_user').val(userInfo.email);
-      $('#balance').val(userInfo.balance);
-      $('#profit').val(userInfo.profit);
-      $('#country').val(userInfo.country);
-      $('#copytrading').val(userInfo.copytrading);
-      $('#referalBonus').val(userInfo.referalBonus || userInfo.referalBonus);
-    }
+      if (!userInfo) return console.warn("⚠️ No user info to populate");
 
+      console.log("Populating edit form with:", userInfo);
+
+      $('#firstName').val(userInfo.firstName || '');
+      $('#lastName').val(userInfo.lastName || '');
+      $('#_id').val(userInfo._id || '');
+      $('#kyc').val(userInfo.kyc || '');
+      $('#email_user').val(userInfo.email || '');
+      $('#balance').val(userInfo.balance || '0');
+      $('#profit').val(userInfo.profit || '0');
+      $('#copytrading').val(userInfo.copytrading || '0');
+      $('#country').val(userInfo.country || '');
+      $('#referalBonus').val(userInfo.referalBonus || '0');
+    } catch (error) {
+      console.error("Error populating edit form:", error);
+    }
+  }
     async function updateProfile({ firstName, lastName, email, balance,profit,copytrading,kyc,referalBonus}) {
       const response = await $.ajax({
         type: "PUT",
@@ -1737,36 +1781,59 @@ document.addEventListener("DOMContentLoaded", () => {
 
   <!-- Hook navigation to load view-specific data when user navigates -->
   <script>
-    async function fetchUserInfo_local() {
-      const email = localStorage.getItem('userem');
-      if (!email) return null;
-      try {
-        const response = await $.ajax({
-          type: "GET",
-          url: `https://smartgen-render.onrender.com/users/${email}`,
-          dataType: "json",
-          timeout: 30000
-        });
-        return response && response.data ? response.data : response;
-      } catch (error) {
-        console.error('Error fetching user info:', error);
-        return null;
-      }
-    }
+    const BASE_URL = "https://smartgen-render.onrender.com";
+   async function fetchUserInfo_local() {
+    try {
+      const stored = localStorage.getItem("updatedUseremal");
+      if (!stored) return null;
 
-    function populateEditUserForm() {
-      fetchUserInfo_local().then(userInfo => {
-        if (!userInfo) return;
-        $('#name_edit').val(userInfo.firstName + ' ' + userInfo.lastName);
-        $('#level_edit').val(userInfo.level || '');
-        $('#rating_edit').val(userInfo.rating || '');
-        $('#commission_edit').val(userInfo.commission || '');
-        $('#pnl_edit').val(userInfo.pnl || '');
-        $('#profileId_edit').val(userInfo.profileId || '');
-        $('#followers_edit').val(userInfo.followers || '');
-        $('#watchers_edit').val(userInfo.watchers || '');
+      const useremm=localStorage.getItem("updatedUseremal")
+      console.log("🟢 Using updated user:");
+const useremmt=useremm.trim().replace(/^"|"$/g, '');
+      // Optionally refetch latest data from backend
+      const response = await $.ajax({
+        type: "GET",
+        url: `https://smartgen-render.onrender.com/users/${useremmt}`,
+        dataType: "json",
+        timeout: 30000,
       });
+
+      const data = response && response.data ? response.data : response;
+
+      console.log(data);
+      
+      localStorage.setItem("updatedUser", JSON.stringify(data)); // keep latest
+      return data;
+    } catch (err) {
+
+      console.error("Error in fetchUserInfo_local:", err);
+      return null;
     }
+  }
+
+
+
+    async function populateEditUserForm() {
+    try {
+      const userInfo = await fetchUserInfo_local();
+      if (!userInfo) return console.warn("⚠️ No user info to populate");
+
+      console.log("Populating edit form with:", userInfo);
+
+      $('#firstName').val(userInfo.firstName || '');
+      $('#lastName').val(userInfo.lastName || '');
+      $('#_id').val(userInfo._id || '');
+      $('#kyc').val(userInfo.kyc || '');
+      $('#email_user').val(userInfo.email || '');
+      $('#balance').val(userInfo.balance || '0');
+      $('#profit').val(userInfo.profit || '0');
+      $('#copytrading').val(userInfo.copytrading || '0');
+      $('#country').val(userInfo.country || '');
+      $('#referalBonus').val(userInfo.referalBonus || '0');
+    } catch (error) {
+      console.error("Error populating edit form:", error);
+    }
+  }
 
     // call loads for each section on nav change (so data refreshes)
    document.querySelectorAll('#mainNav a').forEach(a => {
