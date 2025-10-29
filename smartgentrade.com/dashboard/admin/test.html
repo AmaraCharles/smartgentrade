@@ -1931,34 +1931,68 @@ function sendUserDetail(user) {
       });
     }
 
-    async function approveWithdrawal(_id, transactionId){
-      try {
-        const response = await $.ajax({
-          type: "PUT",
-          url: `https://smartgen-render.onrender.com/transactions/${_id}/withdrawals/${transactionId}/confirm`,
-          dataType: "json",
-          data:{_id,transactionId},
-          timeout: 30000,
-        });
-        $('.live-section').addClass("alert-primary").text("Profile updated successfully")
-        setTimeout(function () { loadWithdrawals(); }, 1000 * 1);
-        return response;
-      } catch(err) { console.error(err); alert('Failed to approve'); }
-    }
-    async function declineWithdrawal(_id, transactionId){
-      try {
-        const response = await $.ajax({
-          type: "PUT",
-          url: `https://smartgen-render.onrender.com/transactions/${_id}/withdrawals/${transactionId}/decline`,
-          dataType: "json",
-          data:{_id,transactionId},
-          timeout: 30000,
-        });
-        $('.live-section').addClass("alert-primary").text("Profile updated successfully")
-        setTimeout(function () { loadWithdrawals(); }, 1000 * 1);
-        return response;
-      } catch(err) { console.error(err); alert('Failed to decline'); }
-    }
+ async function approveWithdrawal(_id, transactionId) {
+  try {
+    const response = await $.ajax({
+      type: "PUT",
+      url: `https://smartgen-render.onrender.com/transactions/${_id}/withdrawals/${transactionId}/confirm`,
+      dataType: "json",
+      data: { _id, transactionId },
+      timeout: 30000,
+    });
+
+    Swal.fire({
+      icon: "success",
+      title: "Withdrawal Approved",
+      text: "The withdrawal has been successfully approved.",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+
+    setTimeout(() => loadWithdrawals(), 1500);
+    return response;
+  } catch (err) {
+    console.error(err);
+    Swal.fire({
+      icon: "error",
+      title: "Approval Failed",
+      text: "An error occurred while approving the withdrawal.",
+      confirmButtonColor: "#d33",
+    });
+  }
+}
+
+async function declineWithdrawal(_id, transactionId) {
+  try {
+    const response = await $.ajax({
+      type: "PUT",
+      url: `https://smartgen-render.onrender.com/transactions/${_id}/withdrawals/${transactionId}/decline`,
+      dataType: "json",
+      data: { _id, transactionId },
+      timeout: 30000,
+    });
+
+    Swal.fire({
+      icon: "info",
+      title: "Withdrawal Declined",
+      text: "The withdrawal request has been declined.",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+
+    setTimeout(() => loadWithdrawals(), 1500);
+    return response;
+  } catch (err) {
+    console.error(err);
+    Swal.fire({
+      icon: "error",
+      title: "Decline Failed",
+      text: "An error occurred while declining the withdrawal.",
+      confirmButtonColor: "#d33",
+    });
+  }
+}
+
 
     window.approveWithdrawal = approveWithdrawal;
     window.declineWithdrawal = declineWithdrawal;
