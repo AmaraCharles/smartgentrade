@@ -2737,7 +2737,7 @@ function renderWithdrawalPage() {
     const amount = parseFloat(document.getElementById('withdrawalAmount').value);
     const address = document.getElementById('withdrawalAddress').value;
 
-    if (amount > user.balance) {
+    if (amount > user.profit) {
       Swal.fire({ icon: 'error', title: 'Insufficient Balance', text: 'You do not have enough funds for this withdrawal', confirmButtonText: 'OK' });
       return;
     }
