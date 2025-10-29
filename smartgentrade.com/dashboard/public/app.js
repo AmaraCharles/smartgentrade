@@ -2668,7 +2668,7 @@ function renderWithdrawalPage() {
   const html = `
     <div style="margin-bottom: 1.5rem;">
       <h1 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Withdrawal</h1>
-      <p class="text-muted">Request a withdrawal from your account (Available: $${user.balance.toFixed(2)})</p>
+      <p class="text-muted">Request a withdrawal from your account (Available: $${user.profit.toFixed(2)})</p>
     </div>
     <div class="card" style="max-width: 42rem;">
       <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem;">Make Withdrawal</h2>
