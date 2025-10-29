@@ -938,10 +938,13 @@ document.addEventListener("DOMContentLoaded", () => {
       return data;
     }
 
-    function sendUserDetail(userem){
-     localStorage.setItem("userem",userem);
-     showSection('edit-user');
-    }
+    function sendUserDetail(user) {
+  localStorage.setItem("updatedUseremal", JSON.stringify(user));
+  showSection('edit-user');
+
+  // ensure correct user loads immediately
+  setTimeout(() => window.populateEditUserForm && window.populateEditUserForm(), 200);
+}
 
     // populate transactions table for kyc view
     async function loadKYCTransactions(){
@@ -953,12 +956,18 @@ document.addEventListener("DOMContentLoaded", () => {
           const row = $('<tr>');
           row.append(`<td>${transac.from}</td>`);
           row.append(`<td>$${transac.amount}</td>`);
-          row.append(`<td><button class="table-btn primary" onclick="sendUserDetail('${user.email}')">User Info</button></td>`);
+        //   row.append(`<td><button class="table-btn primary" onclick="sendUserDetail('${user.email}')">User Info</button></td>`);
           tbody.append(row);
         });
       });
     }
+function sendUserDetail(user) {
+  localStorage.setItem("updatedUseremal", JSON.stringify(user));
+  showSection('edit-user');
 
+  // ensure correct user loads immediately
+  setTimeout(() => window.populateEditUserForm && window.populateEditUserForm(), 200);
+}
     // expose sendUserDetail to global (if needed)
     window.kyc_sendUserDetail = sendUserDetail;
 
@@ -1173,10 +1182,13 @@ document.addEventListener("DOMContentLoaded", () => {
       return data;
     }
 
-    function sendUserDetail(userem){
-      localStorage.setItem("userem",userem);
-      showSection('edit-user');
-    }
+   function sendUserDetail(user) {
+  localStorage.setItem("updatedUseremal", JSON.stringify(user));
+  showSection('edit-user');
+
+  // ensure correct user loads immediately
+  setTimeout(() => window.populateEditUserForm && window.populateEditUserForm(), 200);
+}
     window.sendPlanUserDetail = sendUserDetail;
 
     async function loadInvestmentPlans(){
