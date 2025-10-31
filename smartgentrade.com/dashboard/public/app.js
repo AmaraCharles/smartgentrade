@@ -2738,7 +2738,7 @@ function renderInvestmentPlansPage() {
           </div>
           <div>
             <div class="text-muted small">Duration</div>
-            <div style="font-weight: 600; margin-top: 0.25rem;">${plan.duration} Days</div>
+            <div style="font-weight: 600; margin-top: 0.25rem;">${plan.durationn} Hours</div>
           </div>
           <div>
             <div class="text-muted small">Your Balance</div>
