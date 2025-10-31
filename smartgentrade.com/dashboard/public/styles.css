@@ -1184,25 +1184,40 @@ tbody tr:hover {
 .history-section {
   text-align: center;
   margin-top: 20px;
+  padding: 0 15px;
 }
 
 .history-btn {
   background-color: hsl(var(--primary));
-  color: hsl(var(--primary-foreground));
+  color: white !important;
   border: none;
   padding: 10px 20px;
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
+  width: 100%;
+  max-width: 300px;
+  margin: 5px auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .history-btn:hover {
   background-color: hsl(var(--primary-foreground));
+  color: hsl(var(--primary)) !important;
 }
 
 .history-btn i {
   margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+  .history-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
 }
 /* Analytics Section */
 .trade-analytics {

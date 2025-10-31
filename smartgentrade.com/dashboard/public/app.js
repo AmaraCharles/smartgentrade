@@ -2463,126 +2463,241 @@ async function handleUpdateKYC() {
 
 function renderInvestmentPage() {
   const user = getUserData();
-  
-  // Process daily profits on page load
   processDailyProfits();
-  
-  const activeTransactions = user.transactions.filter(t => t.status === 'active' || t.type === 'trade');
-  const plan = user.plan.filter(inv => inv.status === 'active') || [];
+
+  const plan = user.plan.filter(inv => inv.status === "active") || [];
   const totalPnL = user.profit;
-  
-  const investmentsHTML = plan.length > 0 ? plan.map(inv => {
-    const dailyProfit = inv.amount * inv.dailyProfitRate;
-    const progress = (inv.daysElapsed / inv.duration) * 100;
-    const daysRemaining = inv.duration - inv.daysElapsed;
-    
-    return `
-      <div class="card" style="padding: 1.5rem; margin-bottom: 1rem;">
-        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+
+  const investmentsHTML =
+    plan.length > 0
+      ? plan
+          .map(inv => {
+            const dailyProfit = inv.amount * inv.dailyProfitRate;
+            const progress = (inv.daysElapsed / inv.duration) * 100;
+            const daysRemaining = inv.duration - inv.daysElapsed;
+
+            return `
+        <div class="card" style="padding:1.5rem;margin-bottom:1rem;">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:1rem;">
+            <div>
+              <h3 style="font-size:1.125rem;font-weight:600;margin-bottom:0.25rem;">${inv.planName}</h3>
+              <p class="text-muted small">Started ${inv.startDate}</p>
+            </div>
+            <span class="badge" style="background-color:hsl(var(--chart-2));color:white;padding:0.25rem 0.75rem;border-radius:0.25rem;">${inv.status}</span>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:1rem;">
+            <div>
+              <div class="text-muted small">Invested Amount</div>
+              <div style="font-weight:600;margin-top:0.25rem;">$${inv.amount.toFixed(2)}</div>
+            </div>
+            <div>
+              <div class="text-muted small">Daily Profit</div>
+              <div style="font-weight:600;color:hsl(var(--chart-2));margin-top:0.25rem;">$${dailyProfit.toFixed(2)} (${(
+              inv.dailyProfitRate * 100
+            ).toFixed(2)}%)</div>
+            </div>
+            <div>
+              <div class="text-muted small">Total Earned</div>
+              <div style="font-weight:600;color:hsl(var(--chart-2));margin-top:0.25rem;">$${inv.totalProfit.toFixed(
+                2
+              )}</div>
+            </div>
+            <div>
+              <div class="text-muted small">Days Remaining</div>
+              <div style="font-weight:600;margin-top:0.25rem;">${daysRemaining} / ${
+              inv.duration
+            }</div>
+            </div>
+          </div>
+
           <div>
-            <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.25rem;">${inv.planName}</h3>
-            <p class="text-muted small">Started ${new Date(inv.startDate).toLocaleDateString()}</p>
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;">
+              <span class="text-muted small">Progress</span>
+              <span class="small" style="font-weight:600;">${progress.toFixed(1)}%</span>
+            </div>
+            <div style="width:100%;background-color:hsl(var(--muted));border-radius:9999px;height:8px;">
+              <div style="width:${progress}%;background-color:hsl(var(--chart-2));height:100%;border-radius:9999px;transition:width 0.3s;"></div>
+            </div>
           </div>
-          <span class="badge" style="background-color: hsl(var(--chart-2)); color: white; padding: 0.25rem 0.75rem; border-radius: 0.25rem;">Active</span>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
-          <div>
-            <div class="text-muted small">Invested Amount</div>
-            <div style="font-weight: 600; margin-top: 0.25rem;">$${inv.amount.toFixed(2)}</div>
-          </div>
-          <div>
-            <div class="text-muted small">Daily Profit</div>
-            <div style="font-weight: 600; color: hsl(var(--chart-2)); margin-top: 0.25rem;">$${dailyProfit.toFixed(2)} (${(inv.dailyProfitRate * 100).toFixed(2)}%)</div>
-          </div>
-          <div>
-            <div class="text-muted small">Total Earned</div>
-            <div style="font-weight: 600; color: hsl(var(--chart-2)); margin-top: 0.25rem;">$${inv.totalProfit.toFixed(2)}</div>
-          </div>
-          <div>
-            <div class="text-muted small">Days Remaining</div>
-            <div style="font-weight: 600; margin-top: 0.25rem;">${daysRemaining} / ${inv.duration}</div>
-          </div>
-        </div>
-        
-        <div>
-          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-            <span class="text-muted small">Progress</span>
-            <span class="small" style="font-weight: 600;">${progress.toFixed(1)}%</span>
-          </div>
-          <div style="width: 100%; background-color: hsl(var(--muted)); border-radius: 9999px; height: 8px;">
-            <div style="width: ${progress}%; background-color: hsl(var(--chart-2)); height: 100%; border-radius: 9999px; transition: width 0.3s;"></div>
-          </div>
-        </div>
-      </div>
-    `;
-  }).join('') : '<div class="card"><p class="text-muted" style="text-align: center; padding: 2rem;">No active investment plans. <a href="#investment-plans" style="color: hsl(var(--primary));">Browse available plans</a></p></div>';
-  
-  const html = `
-    <div style="margin-bottom: 1.5rem;">
-      <h1 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">My Investments</h1>
-      <p class="text-muted">Track your active investment plans and trading positions</p>
-    </div>
-    <div class="stats-grid" style="margin-bottom: 1.5rem;">
-      <div class="card stat-card">
-        <div class="stat-label">Total Balance</div>
-        <div class="stat-value">$${user.balance.toFixed(2)}</div>
-      </div>
-      <div class="card stat-card">
-        <div class="stat-label">Active Investments</div>
-        <div class="stat-value">${plan.length}</div>
-      </div>
-      <div class="card stat-card">
-        <div class="stat-label">Investment Profit</div>
-        <div class="stat-value" style="color: hsl(var(--chart-2));">$${plan.reduce((sum, inv) => sum + inv.totalProfit, 0).toFixed(2)}</div>
-      </div>
-      <div class="card stat-card">
-        <div class="stat-label">Total P&L</div>
-        <div class="stat-value" style="color: ${totalPnL >= 0 ? 'hsl(var(--chart-2))' : 'hsl(var(--destructive))'};">${totalPnL >= 0 ? '+' : ''}$${totalPnL.toFixed(2)}</div>
-      </div>
-    </div>
-    
-    ${plan.length > 0 ? `
-      <div style="margin-bottom: 1.5rem;">
-        <h2 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">Active Investment Plans</h2>
-        ${investmentsHTML}
-      </div>
-    ` : investmentsHTML}
-    <div class="card">
-      <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">Investment History</h2>
-      ${user.plan.length > 0 ? `
-        <div class="table-container">
-          <table>
-            <thead>
+        </div>`;
+          })
+          .join("")
+      : `<div class="card"><p class="text-muted" style="text-align:center;padding:2rem;">No active investment plans. <a href="#investment-plans" style="color:hsl(var(--primary));">Browse available plans</a></p></div>`;
+
+  // Tables (renamed)
+  const depositsTable = user.transactions?.length
+    ? `
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Date</th><th>Amount</th><th>Method</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          ${user.transactions
+            .slice()
+            .reverse()
+            .map(
+              d => `
               <tr>
-                <th>Date</th>
-                <th>Type</th>
-                <th>Amount</th>
-                  <th>Profit</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${user.plan.slice().reverse().map(t => `
-                <tr>
-                  <td style="font-weight: 600;">${new Date(t.timestamp).toLocaleDateString()}</td>
-                  <td><span class="badge">${t.planName}</span></td>
-                  <td>$${t.amount}</td>
-                  <td>$${t.totalProfit}</td>
-                  <td><span class="badge" style="${t.status === 'active' || t.status === 'completed' ? 'background-color: hsl(var(--chart-2)); color: white;' : ''}">${t.status}</span></td>
-                </tr>
-              `).join('')}
-            </tbody>
-          </table>
-        </div>
-      ` : `
-        <p class="text-muted" style="text-align: center; padding: 2rem;">No transactions yet. Start trading to see your portfolio!</p>
-      `}
+                <td>${new Date(d.timestamp).toLocaleDateString()}</td>
+                <td>$${d.amount}</td>
+                <td>${d.method}</td>
+                <td><span class="badge" style="background:${
+                  d.status === "Approved"
+                    ? "hsl(var(--chart-2))"
+                    : "hsl(var(--destructive))"
+                };color:white;">${d.status}</span></td>
+              </tr>`
+            )
+            .join("")}
+        </tbody>
+      </table>
+    </div>`
+    : `<p class="text-muted" style="text-align:center;padding:2rem;">No deposits found.</p>`;
+
+  const withdrawalsTable = user.withdrawals?.length
+    ? `
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Date</th><th>Amount</th><th>Method</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          ${user.withdrawals
+            .slice()
+            .reverse()
+            .map(
+              w => `
+              <tr>
+                <td>${new Date(w.timestamp).toLocaleDateString()}</td>
+                <td>$${w.amount}</td>
+                <td>${w.method}</td>
+                <td><span class="badge" style="background:${
+                  w.status === "Approved"
+                    ? "hsl(var(--chart-2))"
+                    : "hsl(var(--destructive))"
+                };color:white;">${w.status}</span></td>
+              </tr>`
+            )
+            .join("")}
+        </tbody>
+      </table>
+    </div>`
+    : `<p class="text-muted" style="text-align:center;padding:2rem;">No withdrawals found.</p>`;
+
+  const html = `
+    <div style="margin-bottom:1.5rem;">
+      <h1 style="font-size:1.5rem;font-weight:700;margin-bottom:0.5rem;">My Investments</h1>
+      <p class="text-muted">Track your active investment plans, deposits, and withdrawals</p>
     </div>
+
+    <div class="stats-grid" style="margin-bottom:1.5rem;">
+      <div class="card stat-card"><div class="stat-label">Total Balance</div><div class="stat-value">$${user.balance.toFixed(
+        2
+      )}</div></div>
+      <div class="card stat-card"><div class="stat-label">Active Investments</div><div class="stat-value">${plan.length}</div></div>
+      <div class="card stat-card"><div class="stat-label">Investment Profit</div><div class="stat-value" style="color:hsl(var(--chart-2));">$${plan
+        .reduce((sum, inv) => sum + inv.totalProfit, 0)
+        .toFixed(2)}</div></div>
+      <div class="card stat-card"><div class="stat-label">Total P&L</div><div class="stat-value" style="color:${
+        totalPnL >= 0 ? "hsl(var(--chart-2))" : "hsl(var(--destructive))"
+      };">${totalPnL >= 0 ? "+" : ""}$${totalPnL.toFixed(2)}</div></div>
+    </div>
+
+    ${plan.length > 0 ? `<h2 style="font-size:1.125rem;font-weight:600;margin-bottom:1rem;">Active Investment Plans</h2>${investmentsHTML}` : investmentsHTML}
+
+    <div class="card" style="margin-top:1.5rem;">
+      <div style="display:flex;justify-content:center;gap:1rem;margin-bottom:1rem;flex-wrap:wrap;">
+        <button class="tab-btn active" data-tab="investments">Investments</button>
+        <button class="tab-btn" data-tab="deposits">Deposits</button>
+        <button class="tab-btn" data-tab="withdrawals">Withdrawals</button>
+      </div>
+
+      <div id="tab-content">
+        <div id="tab-investments">${user.plan.length ? `
+          <div class="table-scroll">
+            <table class="data-table">
+              <thead><tr><th>Date</th><th>Plan</th><th>Amount</th><th>Profit</th><th>Status</th></tr></thead>
+              <tbody>
+                ${user.plan
+                  .slice()
+                  .reverse()
+                  .map(
+                    t => `
+                    <tr>
+                      <td>${new Date(t.timestamp).toLocaleDateString()}</td>
+                      <td>${t.planName}</td>
+                      <td>$${t.amount}</td>
+                      <td>$${t.totalProfit}</td>
+                      <td><span class="badge" style="${
+                        t.status === "active" || t.status === "completed"
+                          ? "background-color:hsl(var(--chart-2));color:white;"
+                          : ""
+                      }">${t.status}</span></td>
+                    </tr>`
+                  )
+                  .join("")}
+              </tbody>
+            </table>
+          </div>` : `<p class="text-muted" style="text-align:center;padding:2rem;">No investments yet.</p>`}
+        </div>
+        <div id="tab-deposits" style="display:none;">${depositsTable}</div>
+        <div id="tab-withdrawals" style="display:none;">${withdrawalsTable}</div>
+      </div>
+    </div>
+
+    <style>
+      .tab-btn {
+        background: none;
+        border: 1px solid hsl(var(--border));
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.2s;
+      }
+      .tab-btn:hover { background: hsl(var(--muted)); }
+      .tab-btn.active { background: hsl(var(--chart-2)); color: white; }
+
+      .table-scroll {
+        overflow-x: auto;
+        width: 100%;
+      }
+
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 700px;
+      }
+      .data-table th, .data-table td {
+        text-align: left;
+        padding: 0.75rem;
+        border-bottom: 1px solid hsl(var(--border));
+        white-space: nowrap;
+      }
+      .data-table th {
+        color: hsl(var(--muted-foreground));
+        text-transform: uppercase;
+        font-size: 0.75rem;
+      }
+    </style>
   `;
-  
+
   content.innerHTML = html;
+
+  // New tab switcher logic
+  document.querySelectorAll(".tab-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const target = btn.dataset.tab;
+      document.querySelectorAll("#tab-content > div").forEach(div => (div.style.display = "none"));
+      document.getElementById("tab-" + target).style.display = "block";
+    });
+  });
 }
+
 function renderInvestmentPlansPage() {
   const user = getUserData();
   const plans = getInvestmentPlans();
