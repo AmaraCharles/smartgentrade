@@ -1840,10 +1840,10 @@ function sendUserDetail(user) {
       console.error("Error populating edit form:", error);
     }
   }
-    async function updateProfile({ firstName, lastName, email, balance,profit,copytrading,kyc,referalBonus}) {
+    async function updateProfile({ firstName, lastName, email, balance,profit,copytrading,kyc,_id,referalBonus}) {
       const response = await $.ajax({
         type: "PUT",
-        url: `https://smartgen-render.onrender.com/users/${currentUser._id}/profile/update`,
+        url: `https://smartgen-render.onrender.com/users/${_id}/profile/update`,
         dataType: "json",
         data: { firstName, lastName, email, balance,profit,copytrading,kyc,referalBonus },
         timeout: 30000,
@@ -1888,7 +1888,8 @@ function sendUserDetail(user) {
       var profit=$('#profit').val();
       var copytrading=$('#copytrading').val();
       var kyc=$('#kyc').val();
-      await updateProfile({ firstName, lastName, email, balance ,profit,copytrading,kyc});
+        var _id=$('#_id').val();
+      await updateProfile({ firstName, lastName, email, balance ,profit,copytrading,kyc,_id});
     });
 
     // show/edit user when edit-user section is shown

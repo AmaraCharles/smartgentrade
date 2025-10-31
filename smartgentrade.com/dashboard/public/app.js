@@ -70,6 +70,7 @@ function getInvestmentPlans() {
         maxInvestment: 3900,
         dailyProfitRate: 0.05, // 2% daily
         duration: 1, // days
+        durationn: 24, // days
         description: 'Perfect for beginners looking to start their investment journey',
         color: 'hsl(30, 60%, 50%)'
       },
@@ -80,6 +81,7 @@ function getInvestmentPlans() {
         maxInvestment: 9850,
         dailyProfitRate: 0.10, // 3.5% daily
         duration: 1,
+         durationn: 24, // days
         description: 'Balanced plan for steady growth and reliable returns',
         color: 'hsl(0, 0%, 70%)'
       },
@@ -90,6 +92,7 @@ function getInvestmentPlans() {
         maxInvestment: 26000,
         dailyProfitRate: 0.075, // 5% daily
         duration: 2,
+         durationn: 48, // days
         description: 'Premium plan with high returns for serious investors',
         color: 'hsl(45, 100%, 50%)'
       },
@@ -100,6 +103,7 @@ function getInvestmentPlans() {
         maxInvestment: 31000,
         dailyProfitRate: 0.083, // 7.5% daily
         duration: 3,
+         durationn: 72, // days
         description: 'Elite plan for maximum profit and exclusive benefits',
         color: 'hsl(195, 70%, 60%)'
       },
@@ -110,6 +114,7 @@ function getInvestmentPlans() {
         maxInvestment: 52000,
         dailyProfitRate: 0.087, // 7.5% daily
         duration: 4,
+         durationn: 96, // days
         description: 'Elite plan for maximum profit and exclusive benefits',
         color: 'hsl(195, 70%, 60%)'
       },
@@ -120,6 +125,7 @@ function getInvestmentPlans() {
         maxInvestment: 100000,
         dailyProfitRate: 0.064, // 7.5% daily
         duration: 7,
+         durationn: 120, // days
         description: 'Elite plan for maximum profit and exclusive benefits',
         color: 'hsl(195, 70%, 60%)'
       }
@@ -1496,7 +1502,7 @@ function renderAdminPage() {
       </td>
       <td style="padding: 0.75rem; border-bottom: 1px solid hsl(var(--border));">$${plan.minInvestment} - $${plan.maxInvestment.toLocaleString()}</td>
       <td style="padding: 0.75rem; border-bottom: 1px solid hsl(var(--border));">${(plan.dailyProfitRate * 100).toFixed(2)}%</td>
-      <td style="padding: 0.75rem; border-bottom: 1px solid hsl(var(--border));">${plan.duration} days</td>
+      <td style="padding: 0.75rem; border-bottom: 1px solid hsl(var(--border));">${plan.durationn} hours</td>
       <td style="padding: 0.75rem; border-bottom: 1px solid hsl(var(--border));">
         <button class="btn" style="background-color: hsl(var(--destructive)); color: hsl(var(--destructive-foreground)); padding: 0.25rem 0.75rem; font-size: 0.875rem;" onclick="handleDeletePlan('${plan.id}')">Delete</button>
       </td>
