@@ -2549,8 +2549,8 @@ function renderInvestmentPage() {
       </div>
     ` : investmentsHTML}
     <div class="card">
-      <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">Transaction History</h2>
-      ${user.transactions.length > 0 ? `
+      <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">Investment History</h2>
+      ${user.plan.length > 0 ? `
         <div class="table-container">
           <table>
             <thead>
@@ -2558,15 +2558,17 @@ function renderInvestmentPage() {
                 <th>Date</th>
                 <th>Type</th>
                 <th>Amount</th>
+                  <th>Profit</th>
                 <th>Status</th>
               </tr>
             </thead>
             <tbody>
-              ${user.transactions.slice().reverse().map(t => `
+              ${user.plan.slice().reverse().map(t => `
                 <tr>
                   <td style="font-weight: 600;">${new Date(t.timestamp).toLocaleDateString()}</td>
-                  <td><span class="badge">${t.type}</span></td>
+                  <td><span class="badge">${t.planName}</span></td>
                   <td>$${t.amount}</td>
+                  <td>$${t.totalProfit}</td>
                   <td><span class="badge" style="${t.status === 'active' || t.status === 'completed' ? 'background-color: hsl(var(--chart-2)); color: white;' : ''}">${t.status}</span></td>
                 </tr>
               `).join('')}
