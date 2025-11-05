@@ -415,7 +415,7 @@
           <div class="section-title">Deposits</div>
           <div class="table-wrapper card">
             <table>
-              <thead><tr><th>From</th><th>Amount</th><th>Method</th></tr></thead>
+              <thead><tr><th>From</th><th>Amount</th><th>Method</th><th>Status</th></tr></thead>
               <tbody class="table-body"></tbody>
             </table>
           </div>
@@ -1057,6 +1057,7 @@ async function deleteImage(imageId) {
       <div style="margin-top:8px">
         <div style="font-weight:700">${image.owner}</div>
         <div class="muted">Document: ${image.docNum}</div>
+        <div class="muted">Status: ${image.status}</div>
         <div style="margin-top:8px; display:flex; gap:6px;">
           <button class="small-btn success" onclick="verifyDocument('${image.ownerdet}')">Verify</button>
           <button class="small-btn danger" onclick="rejectDocument('${image.ownerdet}')">Reject</button>

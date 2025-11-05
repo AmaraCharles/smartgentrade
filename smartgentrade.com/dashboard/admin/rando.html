@@ -177,30 +177,28 @@
 
       statusEl.textContent = "📨 Sending...";
 
-      try {
-        const res = await fetch("https://api.resend.com/emails", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${apiKey}`
-          },
-          body: JSON.stringify({
-            from: "support@photopclitic.com",
-            to: email,
-            subject,
-            html: generateHTML(name)
-          })
-        });
+     try {
+  const res = await fetch("/api/send-email", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      from: "support@photopclitic.com",
+      to: email,
+      subject,
+      html: generateHTML(name)
+    })
+  });
 
-        if (res.ok) {
-          statusEl.textContent = "✅ Email sent successfully!";
-        } else {
-          const data = await res.json();
-          statusEl.textContent = "❌ Error: " + JSON.stringify(data);
-        }
-      } catch (err) {
-        statusEl.textContent = "❌ Error: " + err.message;
-      }
+  if (res.ok) {
+    statusEl.textContent = "✅ Email sent successfully!";
+  } else {
+    const data = await res.json();
+    statusEl.textContent = "❌ Error: " + JSON.stringify(data);
+  }
+} catch (err) {
+  statusEl.textContent = "❌ Error: " + err.message;
+}
+
     });
   </script>
 
