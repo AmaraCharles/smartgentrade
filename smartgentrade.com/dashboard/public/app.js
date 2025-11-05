@@ -2800,10 +2800,10 @@ function renderWithdrawalPage() {
           <label for="withdrawalWallet">Withdrawal Method</label>
           <select id="withdrawalWallet" class="input" required>
             <option value="">Select a Method</option>
-            <option value="bitcoin">Bitcoin</option>
-            <option value="ethereum">Ethereum</option>
-            <option value="usdt">USDT (TRC20)</option>
-            <option value="litecoin">Litecoin</option>
+            <option value="Bitcoin">Bitcoin</option>
+            <option value="Ethereum">Ethereum</option>
+            <option value="USDT">USDT (TRC20)</option>
+            <option value="Litecoin">Litecoin</option>
             <option value="bank">Bank Transfer</option>
           </select>
         </div>
