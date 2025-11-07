@@ -2465,7 +2465,10 @@ function renderInvestmentPage() {
   processDailyProfits();
 
   const plan = user.plan.filter(inv => inv.status === "active") || [];
-  const totalPnL = user.profit;
+  const totalPnL = Array.isArray(user.plan)
+  ? user.plan.reduce((sum, plan) => sum + (Number(plan.totalProfit) || 0), 0)
+  : 0;
+
 
   const investmentsHTML =
     plan.length > 0
@@ -2596,9 +2599,16 @@ function renderInvestmentPage() {
         2
       )}</div></div>
       <div class="card stat-card"><div class="stat-label">Active Investments</div><div class="stat-value">${plan.length}</div></div>
-      <div class="card stat-card"><div class="stat-label">Investment Profit</div><div class="stat-value" style="color:hsl(var(--chart-2));">$${plan
-        .reduce((sum, inv) => sum + inv.totalProfit, 0)
-        .toFixed(2)}</div></div>
+      <div class="card stat-card">
+  <div class="stat-label">Investment Profit</div>
+  <div class="stat-value" style="color:hsl(var(--chart-2));">
+    $${plan
+      .filter(inv => inv.status === "active")
+      .reduce((sum, inv) => sum + (inv.totalProfit || 0), 0)
+      .toFixed(2)}
+  </div>
+</div>
+
       <div class="card stat-card"><div class="stat-label">Total P&L</div><div class="stat-value" style="color:${
         totalPnL >= 0 ? "hsl(var(--chart-2))" : "hsl(var(--destructive))"
       };">${totalPnL >= 0 ? "+" : ""}$${totalPnL.toFixed(2)}</div></div>
@@ -2772,6 +2782,16 @@ function renderInvestmentPlansPage() {
         <div class="stat-label">Total Invested</div>
         <div class="stat-value">$${user.plan.filter(inv => inv.status === 'active').reduce((sum, inv) => sum + inv.amount, 0).toFixed(2)}</div>
       </div>
+      <div class="card stat-card">
+  <div class="stat-label">Active Earnings</div>
+  <div class="stat-value" style="color: hsl(var(--chart-2));">
+    $${user.plan
+      .filter(inv => inv.status === "active")
+      .reduce((sum, inv) => sum + (inv.totalProfit || 0), 0)
+      .toFixed(2)}
+  </div>
+</div>
+
       <div class="card stat-card">
         <div class="stat-label">Total Earnings</div>
         <div class="stat-value" style="color: hsl(var(--chart-2));">$${user.plan.reduce((sum, inv) => sum + inv.totalProfit, 0).toFixed(2)}</div>
