@@ -2064,8 +2064,7 @@ function renderFundAccountPage() {
         <option value="ethereum">Ethereum</option>
         <option value="usdt">USDT (TRC20)</option>
         <option value="litecoin">LTC</option>
-        <option value="bank">Bank Transfer</option>
-        <option value="card">Credit/Debit Card</option>
+       
       </select>
     </div>
 
@@ -2804,7 +2803,7 @@ function renderWithdrawalPage() {
             <option value="Ethereum">Ethereum</option>
             <option value="USDT">USDT (TRC20)</option>
             <option value="Litecoin">Litecoin</option>
-            <option value="bank">Bank Transfer</option>
+           
           </select>
         </div>
         <div class="form-group">
