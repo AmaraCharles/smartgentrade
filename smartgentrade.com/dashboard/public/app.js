@@ -2805,16 +2805,100 @@ function renderInvestmentPlansPage() {
   
   content.innerHTML = html;
 }
+
+async function handleWithdrawal() {
+  const user = getUserData();
+  const type = document.getElementById('withdrawalType').value;
+  const method = document.getElementById('withdrawalWallet').value;
+  const amount = parseFloat(document.getElementById('withdrawalAmount').value);
+  const address = document.getElementById('withdrawalAddress').value;
+
+  // 🟢 Basic validation
+  if (!type) return Swal.fire({ icon: 'warning', title: 'Missing Type', text: 'Select a withdrawal wallet.' });
+  if (!method) return Swal.fire({ icon: 'warning', title: 'Missing Method', text: 'Select a withdrawal method.' });
+  if (amount < 10) return Swal.fire({ icon: 'warning', title: 'Invalid Amount', text: 'Minimum withdrawal is $10.' });
+
+  // 🟠 Choose the correct wallet dynamically
+  const available = type === 'Balance' ? user.balance : user.profit;
+
+  if (amount > available) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Insufficient Funds',
+      text: `You do not have enough ${type.toLowerCase()} for this withdrawal.`,
+    });
+    return;
+  }
+
+  // 🟣 Common withdrawal handler
+  await addWithdrawal({
+    method,
+    amount,
+    address,
+    to: user.email,
+    from: user.firstName + " " + user.lastName,
+    source: type, // optional: to track where it came from
+  });
+
+  Swal.fire({
+    icon: 'success',
+    title: 'Withdrawal Submitted!',
+    html: `<strong>Type:</strong> ${type}<br><strong>Method:</strong> ${method}<br><strong>Amount:</strong> $${amount.toFixed(2)}<br><strong>Address:</strong> ${address}`,
+  });
+
+  renderWithdrawalPage();
+}
+function renderWithdrawalHistory(user) {
+  if (!user.withdrawals.length) return '';
+
+  return `
+    <div class="card" style="margin-top: 2rem;">
+      <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">Withdrawal History</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr><th>Date</th><th>Method</th><th>Amount</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            ${user.withdrawals.slice().reverse().map(w => `
+              <tr>
+                <td>${new Date(w.timestamp).toLocaleDateString()}</td>
+                <td>${w.method}</td>
+                <td>$${w.amount.toFixed(2)}</td>
+                <td><span class="badge">${w.status}</span></td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  `;
+}
+
 function renderWithdrawalPage() {
   const user = getUserData();
+
   const html = `
     <div style="margin-bottom: 1.5rem;">
       <h1 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Withdrawal</h1>
-      <p class="text-muted">Request a withdrawal from your account (Available: $${user.profit.toFixed(2)})</p>
+      <p class="text-muted">
+        Request a withdrawal from your account 
+        (Balance: $${user.balance.toFixed(2)} | Profit: $${user.profit.toFixed(2)})
+      </p>
     </div>
+
     <div class="card" style="max-width: 42rem;">
       <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem;">Make Withdrawal</h2>
       <form id="withdrawalForm">
+        <div class="form-group">
+          <label for="withdrawalType">Withdrawal Wallet</label>
+          <select id="withdrawalType" class="input" required>
+            <option value="">Select a Wallet</option>
+            <option value="Balance">Balance</option> 
+            <option value="Profit">Profit</option>  
+          </select>
+        </div>
+
         <div class="form-group">
           <label for="withdrawalWallet">Withdrawal Method</label>
           <select id="withdrawalWallet" class="input" required>
@@ -2823,92 +2907,38 @@ function renderWithdrawalPage() {
             <option value="Ethereum">Ethereum</option>
             <option value="USDT">USDT (TRC20)</option>
             <option value="Litecoin">Litecoin</option>
-           
           </select>
         </div>
+
         <div class="form-group">
           <label for="withdrawalAmount">Amount ($)</label>
-          <input type="number" id="withdrawalAmount" class="input" placeholder="Enter Amount ($)" step="0.01" min="10" max="${user.balance}" required>
+          <input type="number" id="withdrawalAmount" class="input" placeholder="Enter Amount ($)" step="0.01" min="10" required>
         </div>
+
         <div class="form-group">
           <label for="withdrawalAddress">Wallet Address / Bank Account</label>
           <input type="text" id="withdrawalAddress" class="input" placeholder="Enter your wallet address or bank account" required>
         </div>
+
         <div style="padding: 1rem; background-color: hsl(var(--muted) / 0.5); border-radius: 0.5rem; border: 1px solid hsl(var(--border)); margin-bottom: 1.5rem;">
           <p class="text-muted small">Please note: Withdrawals may take a few minutes to process.</p>
         </div>
+
         <button type="submit" class="btn btn-primary btn-block">Request Withdrawal</button>
       </form>
     </div>
-    
-    ${user.withdrawals.length > 0 ? `
-      <div class="card" style="margin-top: 2rem;">
-        <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">Withdrawal History</h2>
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Method</th>
-                <th>Amount</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${user.withdrawals.slice().reverse().map(w => `
-                <tr>
-                  <td>${new Date(w.timestamp).toLocaleDateString()}</td>
-                  <td>${w.method}</td>
-                  <td>$${w.amount.toFixed(2)}</td>
-                  <td><span class="badge">${w.status}</span></td>
-                </tr>
-              `).join('')}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    ` : ''}
+
+    ${renderWithdrawalHistory(user)}
   `;
 
   content.innerHTML = html;
 
-  // ✅ make the callback async so we can use await inside
   document.getElementById('withdrawalForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const method = document.getElementById('withdrawalWallet').value;
-    const amount = parseFloat(document.getElementById('withdrawalAmount').value);
-    const address = document.getElementById('withdrawalAddress').value;
-
-    if (amount > user.profit) {
-      Swal.fire({ icon: 'error', title: 'Insufficient Balance', text: 'You do not have enough funds for this withdrawal', confirmButtonText: 'OK' });
-      return;
-    }
-
-    if (amount < 10) {
-      Swal.fire({ icon: 'warning', title: 'Invalid Amount', text: 'Minimum withdrawal amount is $10', confirmButtonText: 'OK' });
-      return;
-    }
-
-    // ✅ call async withdrawal logic
-    await addWithdrawal({
-      method,
-      amount,
-      to:user.email,
-      address
-    });
-
-    // Optionally show success alert
-    Swal.fire({
-      icon: 'success',
-      title: 'Withdrawal Submitted!',
-      html: `<strong>Method:</strong> ${method}<br><strong>Amount:</strong> $${amount.toFixed(2)}<br><strong>Address:</strong> ${address}<br><br>Your withdrawal is being processed.`,
-      confirmButtonText: 'OK'
-    });
-
-    e.target.reset();
-    renderWithdrawalPage();
+    await handleWithdrawal();
   });
 }
+
 
 function renderReferralsPage() {
   const user = getUserData();
