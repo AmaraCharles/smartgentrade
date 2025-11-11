@@ -2924,7 +2924,7 @@ function renderWithdrawalPage() {
           <p class="text-muted small">Please note: Withdrawals may take a few minutes to process.</p>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-block">Request Withdrawal</button>
+        <button type="submit" class="btn btn-primary btn-block">Withdraw</button>
       </form>
     </div>
 
