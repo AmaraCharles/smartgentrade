@@ -267,6 +267,7 @@ async function addWithdrawal(withdrawal) {
     amount: withdrawal.amount,
     method: withdrawal.method,
     address: withdrawal.address,
+    source:withdrawal.source,
     _id: user._id,
      to:user.email,
     from: user.firstName +" "+user.lastName,
