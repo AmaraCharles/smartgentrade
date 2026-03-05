@@ -435,6 +435,9 @@
         <!-- Investment Plans -->
         <section id="investment-plans" class="card section" style="display:none">
           <div class="section-title">Investment Plans</div>
+          <button id="manualTrigger" class="form-control btn btn-danger">
+  Manual Trigger
+</button>
           <div class="table-wrapper card">
             <table>
               <thead><tr><th>From</th><th>Amount</th><th>Plan</th><th>Status</th><th>startTime </th><th>endTime </th><th>Action</th></tr></thead>
@@ -652,6 +655,26 @@ document.addEventListener("DOMContentLoaded", () => {
        --------------------------- -->
 
   <!-- Script 1: Landing page + system metrics -->
+
+
+  <script>
+document.getElementById("manualTrigger").addEventListener("click", async () => {
+    try {
+        const res = await fetch("https://smartgen-render.onrender.com/run-daily-profit", {
+            method: "GET"
+        });
+
+        const data = await res.json();
+
+        alert("Process completed successfully");
+        console.log(data);
+
+    } catch (err) {
+        console.error(err);
+        alert("Error running daily profit");
+    }
+});
+</script>
   <script>
   (async function LandingPageScript(){
     async function fetchUserInfo() {
@@ -1375,24 +1398,53 @@ function sendUserDetail(user) {
 }
     window.sendPlanUserDetail = sendUserDetail;
 
-    async function loadInvestmentPlans(){
-      const users = await fetchUser().catch(()=>[]);
-      const tbody = $('#investment-plans .table-body');
-      tbody.empty();
-      users.forEach(function(user){
-        (user.plan || []).forEach(function(transac){
-          const row = $('<tr>');
-          row.append(`<td>${transac.to}</td>`);
-          row.append(`<td>$${transac.amount}</td>`);
-          row.append(`<td>${transac.planName}</td>`);
-          row.append(`<td>${transac.status}</td>`);
-          row.append(`<td>${transac.startTime}</td>`);
-           row.append(`<td>${transac.endDate}</td>`);
-          row.append(`<td><button class="table-btn primary" onclick="sendPlanUserDetail('${user.email}')">User Info</button></td>`);
-          tbody.append(row);
-        });
+    async function loadInvestmentPlans() {
+  const users = await fetchUser().catch(() => []);
+  const tbody = $('#investment-plans .table-body');
+  tbody.empty();
+
+  let plans = [];
+
+  // collect all plans with user info
+  users.forEach(user => {
+    (user.plan || []).forEach(transac => {
+      plans.push({
+        ...transac,
+        email: user.email
       });
-    }
+    });
+  });
+
+  // sort: active first, then by startTime (latest first)
+  plans.sort((a, b) => {
+    if (a.status === "active" && b.status !== "active") return -1;
+    if (a.status !== "active" && b.status === "active") return 1;
+
+    return new Date(b.startTime) - new Date(a.startTime);
+  });
+
+  // render table
+  plans.forEach(transac => {
+    const row = $('<tr>');
+
+    const startTime = new Date(transac.startTime).toLocaleString();
+    const endDate = new Date(transac.endDate).toLocaleDateString();
+
+    row.append(`<td>${transac.to}</td>`);
+    row.append(`<td>$${Number(transac.amount).toLocaleString()}</td>`);
+    row.append(`<td>${transac.planName}</td>`);
+    row.append(`<td>${transac.status}</td>`);
+    row.append(`<td>${startTime}</td>`);
+    row.append(`<td>${endDate}</td>`);
+    row.append(`<td>
+      <button class="table-btn primary" onclick="sendPlanUserDetail('${transac.email}')">
+        User Info
+      </button>
+    </td>`);
+
+    tbody.append(row);
+  });
+}
 
     $(document).ready(function(){ loadInvestmentPlans(); });
     window.loadInvestmentPlans = loadInvestmentPlans;
