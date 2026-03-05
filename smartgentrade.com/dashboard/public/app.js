@@ -2096,7 +2096,7 @@ function renderFundAccountPage() {
   const wallets = {
     bitcoin: { label: "Bitcoin", address: "bc1qtwcg7ep527dh75t2qxvx0v6dc5sd23720cwr53", qr: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=bc1qtwcg7ep527dh75t2qxvx0v6dc5sd23720cwr53" },
     ethereum: { label: "Ethereum", address: "0x91E1BCf255b3f90Eb457a91E601fD076018f2Db3", qr: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=0x91E1BCf255b3f90Eb457a91E601fD076018f2Db3" },
-    usdt: { label: "USDT (TRC20)", address: "TXYcCgkJS8mW5xjVEAeNxyowA7ZjUwzA5q", qr: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=TXYcCgkJS8mW5xjVEAeNxyowA7ZjUwzA5q" },
+    usdt: { label: "USDT (TRC20)", address: "TUbprV9asgor7pMhjUVkXHzJCp6fgVkx2b", qr: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=TUbprV9asgor7pMhjUVkXHzJCp6fgVkx2b" },
     litecoin: { label: "LTC", address: "ltc1q47h97x2a5wkjzsuzfhvmeckml2tsdrruuqyr56", qr: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=ltc1q47h97x2a5wkjzsuzfhvmeckml2tsdrruuqyr56" },
   };
 
