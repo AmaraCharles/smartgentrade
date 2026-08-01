@@ -172,7 +172,7 @@ async function getUser() {
 }
 
 // Return cached user data immediately (not async)
-function getUserData() {
+function () {
   const parsedData = localStorage.getItem("userData");
   if (!parsedData) return null;
 
