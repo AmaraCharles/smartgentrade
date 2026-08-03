@@ -1,4 +1,7 @@
 // ==================== USER DATA MANAGEMENT ====================
+
+
+
 function apiLog(action, data) {
   const logs = JSON.parse(localStorage.getItem('apiLogs') || '[]');
   logs.push({
@@ -161,10 +164,18 @@ async function getUser() {
       timeout: 30000,
     });
 
-    // update local storage with latest data
-    localStorage.setItem("userData", JSON.stringify(response.data));
+    // merge server data with local defaults so client-side fields aren't lost
+    const merged = { ...userFromLS, ...response.data };
+    // ensure arrays always exist (server may omit empty ones)
+    merged.transactions = merged.transactions || [];
+    merged.withdrawals = merged.withdrawals || [];
+    merged.rewards = merged.rewards || userFromLS.rewards || [];
+    merged.plan = merged.plan || [];
+    merged.referredUsers = merged.referredUsers || [];
+    merged.copyTradingActive = merged.copyTradingActive || [];
+    localStorage.setItem("userData", JSON.stringify(merged));
     console.log("✅ User refreshed from server");
-    return response.data;
+    return merged;
   } catch (error) {
     console.error("❌ Error fetching user:", error);
     return userFromLS; // fallback to local version
@@ -172,7 +183,7 @@ async function getUser() {
 }
 
 // Return cached user data immediately (not async)
-function () {
+function getUserData() {
   const parsedData = localStorage.getItem("userData");
   if (!parsedData) return null;
 
@@ -689,7 +700,7 @@ function renderDashboardPage() {
       </div>
       <div class="card stat-card">
         <div class="stat-label">Active Trades</div>
-        <div class="stat-value">${user.transactions.filter(t => t.status === 'active').length}</div>
+        <div class="stat-value">${(user.transactions || []).filter(t => t.status === 'active').length}</div>
       </div>
       <div class="card stat-card">
         <div class="stat-label">Referral Bonus</div>
