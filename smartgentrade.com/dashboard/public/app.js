@@ -2264,13 +2264,15 @@ async function handleChangePassword() {
 
   // Send request to backend
   try {
-    await $.ajax({
+    const resp = await $.ajax({
       type: "PUT",
       url: `https://smartgen-render-2288.onrender.com/auth/${userInfo._id}/reset-password`,
       dataType: "json",
       data: { password },
       timeout: 30000
     });
+    // Changing the password revokes old sessions; keep this one logged in with the fresh token.
+    sgAuth.saveSession(resp);
 
     Swal.fire({
       title: "Success",
