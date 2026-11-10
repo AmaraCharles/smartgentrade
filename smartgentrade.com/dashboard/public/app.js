@@ -1057,13 +1057,11 @@ function loadTradingViewWidget2(containerId, symbol) {
         data: trade,
         timeout: 30000
       });
-      const tradeId = data.tradeId;
-      const state = "true";
-      await commandTrade(tradeId, state);
+      // Trade stays PENDING until an admin activates it.
       Swal.fire({
         icon: 'success',
         title: `Trade Placed!`,
-        text: `${trade.assetName} | $${trade.amount} @ ${trade.leverage}`,
+        text: `${trade.assetName} | $${trade.amount} @ ${trade.leverage} — pending activation`,
         confirmButtonColor: '#f0b90b'
       });
       setTimeout(() => renderTradeHistoryPage(), 2000);
