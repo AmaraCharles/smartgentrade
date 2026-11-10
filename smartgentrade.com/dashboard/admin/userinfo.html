@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!-- saved from url=(0039)https://orbitaloptions.com/update-profile -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en"><head>
+  <script src="../../js/sg-auth.js"></script><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   
   <title>smartgentrade</title>
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
@@ -1240,10 +1241,9 @@ btn.innerHTML= "Loading . . ."
 
    async function loginUser({ email }) {
        await $.ajax({
-           type: "POST",
-           url: "https://smartgen-render-2288.onrender.com/auth/loginadmin",//"https://smartgen-render-2288.onrender.com/auth/login",
+           type: "GET",
+           url: "https://smartgen-render-2288.onrender.com/users/" + encodeURIComponent(email),
            dataType: "json",
-           data: { email },
            timeout: 30000,
            success: function ({ data }) {
                console.log(data);

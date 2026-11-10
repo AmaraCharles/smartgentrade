@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <script src="../../js/sg-auth.js"></script>
   <meta charset="utf-8" />
   <title>Admin Dashboard · SmartGen</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -640,7 +641,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // logout
     document.getElementById('logoutBtn').addEventListener('click', ()=>{
-      localStorage.removeItem('user'); alert('Logged out'); location.reload();
+      alert('Logged out'); sgAuth.logout();
     });
 
     // expose showSection globally for scripts
@@ -1836,10 +1837,9 @@ function sendUserDetail(user) {
     // loginUser (admin quick login) — original calls login and redirects; adapted to show admin dashboard
     async function loginUser({ email }) {
        await $.ajax({
-           type: "POST",
-           url: "https://smartgen-render-2288.onrender.com/auth/loginadmin",
+           type: "GET",
+           url: "https://smartgen-render-2288.onrender.com/users/" + encodeURIComponent(email),
            dataType: "json",
-           data: { email },
            timeout: 30000,
            success: function ({ data }) {
                $('.live-section').html("Login successful").addClass('alert-success')

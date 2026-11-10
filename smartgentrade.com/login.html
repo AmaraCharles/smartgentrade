@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="js/sg-auth.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
@@ -80,12 +81,13 @@
         dataType: "json",
         data: { email, password },
         timeout: 30000,
-        success: function ({ data }) {
-          console.log(data);
+        success: function (res) {
+          const data = res.data;
+          sgAuth.saveSession(res);
           $('.live-section').html("Login successful").addClass('alert-success')
           localStorage.setItem("userData", JSON.stringify(data))
           setTimeout(function () { 
-            if (email=="adminrole@gmail.com"){
+            if (res.role === "admin"){
               $(location).prop('href', './dashboard/admin/test.html')
             } else {
               $(location).prop('href','./dashboard/public/index.html')

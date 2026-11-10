@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="js/sg-auth.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register</title>
@@ -100,11 +101,7 @@
 	
 	   
 		
-		$(document).ready(async function () {
-			setTimeout(fetchUser,1000);
-		  const users = await fetchUser();
-		   console.log(users)
-		})
+		// (Removed: this page used to download every user's record. The list is admin-only now.)
 		</script>    
 
   <script>
@@ -147,7 +144,7 @@ document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 				   data: { ...values },
 				   timeout: 30000,
 				   success: function (data) {
-                        console.log(data);
+                        sgAuth.saveSession(data);
                         if (data.otp && data.otpExpiration) {
                 // Store OTP and expiration time for later use
                 const otp = data.otp; // The OTP
